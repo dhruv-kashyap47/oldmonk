@@ -1,0 +1,45 @@
+{
+  "name": "oldmonk",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build && tsx scripts/prerender.ts",
+    "preview": "tsx scripts/serve-static.ts",
+    "typecheck": "tsc --noEmit",
+    "lint": "oxlint src scripts",
+    "check:copy": "node scripts/check-copy.mjs",
+    "brand:assets": "pwsh -NoProfile -File scripts/prepare-brand.ps1",
+    "check:content": "tsx scripts/check-content.ts",
+    "check:correctness": "vitest run",
+    "check:seo": "tsx scripts/check-seo.ts",
+    "check:links": "tsx scripts/check-links.ts",
+    "check:bundle": "tsx scripts/check-bundle.ts",
+    "test": "vitest run",
+    "verify": "npm run typecheck && npm run lint && npm run check:copy && npm run test && npm run build && npm run check:seo && npm run check:links && npm run check:content && npm run check:bundle"
+  },
+  "dependencies": {
+    "@solidjs/meta": "2.0.0",
+    "@solidjs/router": "2.0.1",
+    "@solidjs/web": "2.0.3",
+    "@ui-sdk/core": "0.1.0-beta.13",
+    "@ui-sdk/solid": "0.1.0-beta.13",
+    "solid-js": "2.0.3"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.29.7",
+    "@solidjs/babel-plugin": "^2.0.2",
+    "@solidjs/vite-plugin": "3.0.1",
+    "@tailwindcss/vite": "4.3.5",
+    "oxlint": "1.94.0",
+    "tailwindcss": "4.3.5",
+    "tsx": "^4.20.6",
+    "typescript": "7.0.2",
+    "vite": "8.3.8",
+    "vitest": "5.1.1"
+  }
+}

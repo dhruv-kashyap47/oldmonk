@@ -1,0 +1,59 @@
+import { For } from "solid-js";
+import { httpStatus } from "@solidjs/web";
+import { categories } from "../content/categories";
+import { MetaTags } from "../components/seo/MetaTags";
+import { Container } from "../components/layout/Container";
+import { focusRing } from "../components/ui/styles";
+
+export default function NotFoundPage() {
+  httpStatus(404);
+
+  return (
+    <>
+      <MetaTags
+        title="Page not found"
+        description="This address does not match a page on oldmonk. Browse the tool catalog or pick a category."
+        path="/404"
+        robots="noindex,follow"
+      />
+      <main id="main" class="pb-16">
+        <Container width="tool" class="pt-16">
+          <p class="font-mono text-xs tracking-[0.03em] text-muted">Error 404</p>
+          <h1 class="mt-4 font-serif text-[clamp(2.25rem,5vw,3.5rem)] leading-[1.02] font-semibold tracking-tight text-ink">
+            This page does not exist.
+          </h1>
+          <p class="mt-4 max-w-[52ch] text-lg leading-relaxed text-muted">
+            Check the address, or start from the catalog. Every shipped tool is listed on
+            the home page.
+          </p>
+          <a
+            href="/"
+            class={`${focusRing} mt-8 inline-flex min-h-11 items-center rounded-control bg-accent px-4 text-sm font-medium text-paper hover:bg-accent-hover`}
+          >
+            Back to the catalog
+          </a>
+
+          <section aria-labelledby="not-found-categories" class="mt-14">
+            <h2 id="not-found-categories" class="font-serif text-2xl font-semibold text-ink">
+              Categories
+            </h2>
+            <ul class="mt-5 grid gap-2 sm:grid-cols-2">
+              <For each={categories}>
+                {(category) => (
+                  <li>
+                    <a
+                      href={category.path}
+                      class={`${focusRing} flex min-h-11 items-center rounded-control border border-line px-3 text-sm text-ink hover:border-accent`}
+                    >
+                      {category.name}
+                    </a>
+                  </li>
+                )}
+              </For>
+            </ul>
+          </section>
+        </Container>
+      </main>
+    </>
+  );
+}
