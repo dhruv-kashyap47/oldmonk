@@ -16,7 +16,10 @@ function truncateLabel(label: string, limit = 18): string {
 export function Wheel(props: { entries: readonly string[]; rotation: number }) {
   let canvas: HTMLCanvasElement | undefined;
 
-  function draw() {
+  function draw(
+    entries: readonly string[] = props.entries,
+    rotation: number = props.rotation,
+  ) {
     const element = canvas;
     if (!element || typeof window === "undefined") return;
 
@@ -46,7 +49,7 @@ export function Wheel(props: { entries: readonly string[]; rotation: number }) {
     const muted = read("--color-muted");
     const accentWarm = read("--color-accent-warm");
 
-    const list = props.entries;
+    const list = entries;
 
     if (list.length === 0) {
       context.beginPath();
@@ -66,7 +69,7 @@ export function Wheel(props: { entries: readonly string[]; rotation: number }) {
     }
 
     const sector = (Math.PI * 2) / list.length;
-    const offset = (props.rotation * Math.PI) / 180;
+    const offset = (rotation * Math.PI) / 180;
     const colors = palette.length > 0 ? palette : [surfaceTwo];
     const showLabels = list.length <= 24;
     const fontSize = Math.max(9, Math.min(14, 150 / Math.max(1, list.length)));
@@ -129,7 +132,7 @@ export function Wheel(props: { entries: readonly string[]; rotation: number }) {
 
   createEffect(
     () => [props.entries, props.rotation] as const,
-    () => draw(),
+    ([entries, rotation]) => draw(entries, rotation),
   );
 
   onSettled(() => {

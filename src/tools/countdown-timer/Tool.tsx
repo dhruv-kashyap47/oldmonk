@@ -11,7 +11,7 @@ import { playFinishChime, unlockAudio } from "../../lib/audio";
 import { Button } from "../../components/ui/Button";
 import { ToolActions, ToolPanel } from "../../components/tool/ToolPanel";
 import { ResultCard } from "../../components/tool/states";
-import { buttonBase, inputBase, monoMeta } from "../../components/ui/styles";
+import { buttonBase, inputBase } from "../../components/ui/styles";
 import {
   createDeadlineClock,
   formatClock,
@@ -291,9 +291,7 @@ export default function CountdownTimerTool() {
           The full length, restored by reset.
         </ResultCard>
         <ResultCard label="Status" value={statusLabel()}>
-          <span class={monoMeta}>
-            {draftMs() === null ? "Check the duration" : "Target timestamp, no drift"}
-          </span>
+          {draftMs() === null ? "Check the duration" : "Target timestamp, no drift"}
         </ResultCard>
       </div>
     </>
