@@ -37,6 +37,14 @@ export default function SearchDialog(props: {
     navigate(`/${slug}`);
   }
 
+  function preload(slug: string | null): void {
+    if (!slug) return;
+    const tool = getTool(slug);
+    if (!tool) return;
+    void tool.loadTool().catch(() => undefined);
+    void tool.loadContent().catch(() => undefined);
+  }
+
   return (
     <Dialog open={props.open} onOpenChange={props.onOpenChange}>
       <DialogBackdrop class="dialog-backdrop fixed inset-0 z-40 bg-black/45" />
@@ -55,7 +63,11 @@ export default function SearchDialog(props: {
             Close
           </DialogClose>
         </div>
-        <Command items={commandItems} onAction={(value) => choose(value)}>
+        <Command
+          items={commandItems}
+          onAction={(value) => choose(value)}
+          onValueChange={(value) => preload(value)}
+        >
           <CommandInput
             aria-label="Search tools"
             placeholder="Type a tool name, like JSON"
@@ -73,6 +85,7 @@ export default function SearchDialog(props: {
                   return (
                     <CommandItem
                       value={item.value}
+                      onPointerEnter={() => preload(item.value)}
                       class={`${focusRing} flex cursor-pointer flex-col items-start gap-0.5 rounded-control px-3 py-2.5 text-left text-[15px] text-ink data-highlighted:bg-surface-2`}
                     >
                       <span class="font-medium">{item.label}</span>
