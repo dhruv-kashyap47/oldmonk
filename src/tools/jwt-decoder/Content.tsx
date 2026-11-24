@@ -27,6 +27,31 @@ export const faq: readonly FAQItem[] = [
     answer:
       "nbf means not before. The token is not valid until that Unix timestamp, which helps when a token is issued slightly ahead of the clock on the server that will check it. The decoder shows both the raw seconds and the UTC time so a clock skew is easy to spot.",
   },
+  {
+    question: "Why does it say my token has the wrong number of parts?",
+    answer:
+      "A signed JWT has three segments separated by two dots, so a count of two usually means the token was cut short or only part of it was copied. Encrypted tokens use a different five-part format and are not supported.",
+  },
+  {
+    question: "Can it decode an encrypted JWE token?",
+    answer:
+      "No. A JWE has five segments and an encrypted payload, so the header and claims cannot be read without the decryption key. This page handles signed three-part JWTs.",
+  },
+  {
+    question: "Does it check the issuer or audience?",
+    answer:
+      "No. The table shows iss and aud so you can read them, but the page does not compare them with an expected value. Your server should enforce those checks.",
+  },
+  {
+    question: "Is the secret saved anywhere?",
+    answer:
+      "No. The secret stays in the password field for this visit, is used only for the WebCrypto comparison, and is cleared by Clear or a reload.",
+  },
+  {
+    question: "My signing secret is Base64 text. Should I paste it encoded?",
+    answer:
+      "The tool uses the exact characters you type as the key bytes. If your signer decoded a Base64 secret before signing, decode it first and paste the raw text here.",
+  },
 ];
 
 export default function JwtDecoderContent() {
@@ -38,7 +63,7 @@ export default function JwtDecoderContent() {
         can compare an HMAC signature with the secret you provide.
       </p>
 
-      <h2>How to use it</h2>
+      <h2>Decode a token in four steps</h2>
       <ol>
         <li>Paste a token in the input field. A leading <code>Bearer</code> word is removed for you.</li>
         <li>
@@ -55,7 +80,7 @@ export default function JwtDecoderContent() {
         </li>
       </ol>
 
-      <h2>The three parts</h2>
+      <h2>The header, payload, and signature</h2>
       <p>
         A JWT has a header, a payload, and a signature, separated by two dots. Each segment is
         base64url text, a variant of base64 that uses <code>-</code> and <code>_</code> instead of
@@ -70,7 +95,7 @@ export default function JwtDecoderContent() {
         encryption, so the header and payload are readable by anyone who has the token.
       </p>
 
-      <h2>Reading the claims</h2>
+      <h2>How to read the claims table</h2>
       <p>
         Registered claims appear first in the table, with their common names. <code>iss</code> is
         the issuer, <code>sub</code> is the subject, and <code>aud</code> is the audience.
@@ -86,7 +111,7 @@ export default function JwtDecoderContent() {
         revocation list.
       </p>
 
-      <h2>Signature verification</h2>
+      <h2>Checking an HMAC signature</h2>
       <p>
         For HS256, HS384, and HS512 the same secret signs and verifies the token. The browser
         recomputes the HMAC with WebCrypto and compares the bytes in constant time. A match means
@@ -100,7 +125,7 @@ export default function JwtDecoderContent() {
         <code>none</code> has no signature to check, and servers should reject it.
       </p>
 
-      <h2>Limits and privacy</h2>
+      <h2>Local decoding and strict segments</h2>
       <p>
         The token is processed in this tab and is not stored in local storage. Nothing is uploaded
         or sent to an API. That protects the token from this site, not from your device, your

@@ -27,6 +27,31 @@ export const faq: readonly FAQItem[] = [
     answer:
       "Consistency compares each full second of typing to the average second. It uses the standard deviation of the per-second speed samples: a steady pace scores near 100, and a run with fast bursts and long pauses scores lower. The final partial second is not sampled, so a short pause at the end does not distort the figure.",
   },
+  {
+    question: "Is my best score kept after a reload?",
+    answer:
+      "Yes. The best net speed in this browser is stored and shown again on your next visit. The current run, the typed text, and the passage position are not saved. Clearing site data removes the stored best.",
+  },
+  {
+    question: "Does the test work with an on-screen keyboard?",
+    answer:
+      "Yes. Tap the passage to place the cursor and type with the on-screen keyboard. Autocorrect, capitalization, and spellcheck are turned off on the input field, though some keyboards still offer suggestions that can change a word.",
+  },
+  {
+    question: "Can I use Backspace and the arrow keys to fix a mistake?",
+    answer:
+      "Backspace deletes the last character and the clock keeps running. The arrow keys, Home, and End are blocked so the cursor stays at the end of your text, and clicking the field also moves it there. Restart clears everything and loads a new passage.",
+  },
+  {
+    question: "Am I being timed while I read the passage?",
+    answer:
+      "No. The Start typing button only places the cursor in the field; the clock starts on your first character. That means you can read the opening line without losing time. The time left counter stays at the full length until then.",
+  },
+  {
+    question: "How is this different from the Click Speed Test?",
+    answer:
+      "This test measures typing, so only correct characters count toward net speed and mistakes lower it. The Click Speed Test counts clicks in a fixed ten second window and reports clicks per second. Both keep a best result in this browser.",
+  },
 ];
 
 export default function TypingSpeedTestContent() {
@@ -38,7 +63,7 @@ export default function TypingSpeedTestContent() {
         minute, raw speed, accuracy, and how steady your pace was.
       </p>
 
-      <h2>How to use it</h2>
+      <h2>Take a timed typing run</h2>
       <ol>
         <li>Choose a test length. The 15 second run is a quick check, while 60 seconds gives a steadier picture.</li>
         <li>Tap the passage or press <strong>Start typing</strong> to place the cursor.</li>
@@ -83,7 +108,7 @@ export default function TypingSpeedTestContent() {
         update silently so they do not interrupt the run.
       </p>
 
-      <h2>Limits worth knowing</h2>
+      <h2>What changes the measured speed</h2>
       <p>
         The score reflects this browser, this keyboard, and this moment. Key travel, keyboard
         layout, screen refresh, operating system input latency, and whether the tab stays visible
@@ -94,7 +119,7 @@ export default function TypingSpeedTestContent() {
         field; the result still depends on the device.
       </p>
 
-      <h2>Privacy and storage</h2>
+      <h2>What is saved from a run</h2>
       <p>
         The passage and everything you type stay in this tab. There is no upload and no account.
         The best net speed is stored in this browser so you can see it on a later visit, and

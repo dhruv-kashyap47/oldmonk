@@ -449,11 +449,13 @@ Deliberately avoid the current AI default: cream + high-contrast serif + terraco
 
 ### 4.4 Motion
 
-- UI transitions 120–180ms ease-out.
-- One orchestrated moment on the homepage: filtered catalog rows settle with a 120ms fade; no per-card reveal or scroll-triggered animation.
-- Anime.js only for: spin wheel, timer progress ring, result reveal. Loaded dynamically on interaction, never in the initial bundle.
-- `prefers-reduced-motion: reduce` disables transforms/loops; results still appear instantly.
-- No looping decorative animation.
+- UI transitions 140ms ease-out. The page settle is 240ms, with catalog rows staggered 45ms up to eight rows.
+- One orchestrated moment on the homepage: filtered catalog rows settle with a short fade and 8px rise. No per-card reveal and no scroll-triggered animation.
+- Hover and focus: the row name moves 3px toward the reader and takes the category ink color. The row background takes a 6 percent category tint.
+- FAQ answers open by default and collapse with a measured 180ms height transition. Every answer stays in the HTML.
+- Anime.js is not used. The spin wheel runs on the frame loop, and the timer rings use CSS.
+- `prefers-reduced-motion: reduce` removes transforms, loops, and delays; results still appear instantly.
+- No looping decorative animation. The only repeating motion is a route loading bar, and it was removed because it pulled the router graph into the initial bundle.
 
 ### 4.5 Page templates
 
@@ -529,7 +531,7 @@ Each tool page must contain, in this order:
 3. "How to use": 3–5 concrete steps.
 4. "What it does": the technical behavior, limits, and edge cases.
 5. Privacy note: what stays local.
-6. FAQ: 3–5 real questions with direct answers.
+6. FAQ: 8 to 10 real questions with direct answers.
 7. Related tools: 3–6 contextual links.
 8. Last updated date (real).
 
@@ -716,7 +718,7 @@ Never collect: raw input, clipboard contents, JWT/JSON/text contents, exact quer
 - **E2E (Playwright):** all 24 tool routes + hubs/static pages; metadata; no console errors; no horizontal overflow at 360px; core flows; keyboard navigation; axe scans.
 - **Build checks:** links, SEO assertions, JSON-LD parse, bundle budgets, no-network-in-tools, no `Math.random` in security-sensitive modules.
 - **CI (GitHub Actions):** typecheck, lint, unit, build + prerender checks, e2e, upload artifacts.
-- **`npm run verify`:** typecheck + lint + unit + build + checks. The scaffold currently passes with **zero tests**; Phase 1 must replace that with real tests before the gate.
+- **`npm run verify`:** typecheck + lint + copy check + unit + build + prerender checks + link crawl + content audit + bundle budgets. It passes with 608 tests. Playwright, axe, and CI land in Sprint F1; the sprint board in `Task.md` is the schedule of record.
 
 ### 10.2 Manual
 
@@ -812,7 +814,7 @@ Never collect: raw input, clipboard contents, JWT/JSON/text contents, exact quer
 15. Add the search palette (ui-sdk Command), recent tools, inline filter, typed analytics events, Plausible adapter. *(2 days)*
 16. Deploy the MVP to Cloudflare Pages; verify GSC, sitemap, post-deploy smoke. *(2 days)*
 17. Build the remaining developer tools: JSON Validator/Minifier (shared core), Base64, URL, UUID, Timestamp, Diff, Regex. *(8 days)*
-18. Content and internal links: 350–800 words per tool, how-to, limits, privacy, 3–5 FAQs, 3–6 related links, category intros, legal pages. *(5 days)*
+18. Content and internal links: 350–800 words per tool, how-to, limits, privacy, 8 to 10 FAQs, 3–6 related links, category intros, legal pages. *(5 days)*
 19. Monetization and QA: AdSense slots, CMP, `ads.txt`, CSP test, bundle budgets, axe, Playwright, cross-browser, launch. *(4 days)*
 
 Rationale: prove the hardest path (SSR → static HTML → hydration → metadata → catalog) with one tool before multiplying it. Then ship the reuse-heavy MVP, then finish the parser-heavy developer tools. The design gate catches system mistakes while they are cheap to fix.
@@ -856,6 +858,8 @@ The full audit is in [Audit.md](./Audit.md); the exact port map and rejected cod
 ---
 
 ## 17. Estimated effort by phase
+
+The table below is the no-AI baseline and stays as a cost reference. The schedule of record is the sprint board in [Task.md](./Task.md): 10 retrospective sprints for the work already shipped, then three forward sprints (F1 trust gate, F2 device and accessibility, F3 launch) for 13 engineer-days to launch.
 
 Assumes one senior engineer, full-time, with AI assistance, design tokens locked, and copy drafted by the same engineer. Add 20% buffer for review and content revisions.
 

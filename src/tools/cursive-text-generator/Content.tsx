@@ -27,6 +27,31 @@ export const faq: readonly FAQItem[] = [
     answer:
       "Use it as a preview only. A printer needs a real vector or high resolution file, and a cursive Unicode string may not match the typeface you licensed. Give the printer the name in ordinary text and let the designer set it in the chosen face.",
   },
+  {
+    question: "How is this different from the fancy text generator?",
+    answer:
+      "This page keeps four handwriting styles and adds a signature builder and a support table. The fancy page previews fifteen styles, from bold and fraktur to circled and upside down.",
+  },
+  {
+    question: "What exactly does the signature builder copy?",
+    answer:
+      "Two lines: the name in the chosen style, then the role exactly as you typed it. If the role field is empty, only the name line is copied.",
+  },
+  {
+    question: "Will a search for my name find the cursive version?",
+    answer:
+      "Usually not. Search matches the code points, and a cursive letter is a different code point from the plain one. Keep the plain name somewhere if people need to find you.",
+  },
+  {
+    question: "Why is the italic h a different shape?",
+    answer:
+      "Unicode leaves the italic slot for h unfilled, so the Planck constant letter takes its place. It is the correct italic form, though a few fonts draw it oddly.",
+  },
+  {
+    question: "How do I read the support table?",
+    answer:
+      "Each row is one style, with columns for uppercase coverage, lowercase, digits, and what a missing glyph looks like. Use it to pick a style before you paste a name into a profile.",
+  },
 ];
 
 export default function CursiveTextGeneratorContent() {
@@ -39,7 +64,7 @@ export default function CursiveTextGeneratorContent() {
         fonts it already has.
       </p>
 
-      <h2>The four styles</h2>
+      <h2>The four handwriting styles</h2>
       <p>
         Script is the closest match to joined handwriting. Bold script keeps the same shapes
         with heavier strokes. Italic is a slanted serif alphabet, and bold italic adds
@@ -54,7 +79,7 @@ export default function CursiveTextGeneratorContent() {
         original form. A note above the table names the characters that stayed plain.
       </p>
 
-      <h2>Signature blocks</h2>
+      <h2>Building a two line signature</h2>
       <p>
         A signature reads best in two parts: the name in script, then a role or location in
         ordinary letters. The second line does the work when a font has no cursive glyph,
@@ -69,7 +94,7 @@ export default function CursiveTextGeneratorContent() {
         artwork set in a licensed typeface.
       </p>
 
-      <h2>Where it renders</h2>
+      <h2>Which apps keep the script</h2>
       <p>
         iPhones, iPads, and Macs ship fonts for the mathematical alphabets, and current
         Windows and Android releases cover most of the range. Instagram, WhatsApp, Telegram,
@@ -85,7 +110,7 @@ export default function CursiveTextGeneratorContent() {
         only shows the fonts on this device.
       </p>
 
-      <h2>Uppercase gaps and fallback</h2>
+      <h2>Missing letters and plain digits</h2>
       <p>
         Script uppercase B, E, F, H, I, L, M, and R live in Letterlike Symbols. Fraktur and
         double-struck have similar borrowing, though this page only offers the four cursive
@@ -100,7 +125,7 @@ export default function CursiveTextGeneratorContent() {
         key.
       </p>
 
-      <h2>Accessibility</h2>
+      <h2>Reading a cursive name aloud</h2>
       <p>
         A screen reader may read a cursive letter by its Unicode name, spell it out, or skip
         it. Short display names are tolerable. A paragraph in script is not. Write the same

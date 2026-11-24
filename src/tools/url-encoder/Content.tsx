@@ -27,6 +27,31 @@ export const faq: readonly FAQItem[] = [
     answer:
       "No. Encoding, decoding, and query parsing happen in this tab. There is no upload and no storage.",
   },
+  {
+    question: "What happens if I encode text that is already encoded?",
+    answer:
+      "You get double encoding. A space that was %20 becomes %2520, because the percent sign is escaped too. Decode first when you are not sure whether a string is already encoded.",
+  },
+  {
+    question: "Why does the rebuilt URL differ from the one I pasted?",
+    answer:
+      "Rebuilding decodes each value and then encodes it again in one standard form, so an escaped letter that did not need escaping can become plain. The values are the same, and the text can look different.",
+  },
+  {
+    question: "How is percent encoding different from Base64?",
+    answer:
+      "Percent encoding keeps the text readable and escapes only the characters a URL cannot carry. Base64 packs the whole input into a different alphabet, so the output no longer looks like the original.",
+  },
+  {
+    question: "Is the input kept if I reload the page?",
+    answer:
+      "No. The fields live in the page, not in storage, so a reload clears them. Copy the output before you leave.",
+  },
+  {
+    question: "What happens to the fragment when I remove every parameter?",
+    answer:
+      "The question mark and the query string are dropped, and the part after # stays in place. A base without parameters is still a valid URL, so the fragment is kept.",
+  },
 ];
 
 export default function UrlEncoderContent() {
@@ -52,7 +77,7 @@ export default function UrlEncoderContent() {
         complete URL.
       </p>
 
-      <h2>How to use the encoder</h2>
+      <h2>Encode a value in three steps</h2>
       <ol>
         <li>Choose a scope and a direction.</li>
         <li>Paste the text on the left. The result appears on the right after the button.</li>
@@ -87,7 +112,7 @@ export default function UrlEncoderContent() {
         text can differ from the original.
       </p>
 
-      <h2>Errors and limits</h2>
+      <h2>Malformed escapes and broken characters</h2>
       <p>
         Encoding can fail on an unpaired UTF-16 surrogate, which is a broken character rather
         than a normal emoji. Decoding can fail on a bad percent escape or on bytes that are not
@@ -95,7 +120,7 @@ export default function UrlEncoderContent() {
         round trip, so the practical limit is what a text field can hold.
       </p>
 
-      <h2>Privacy</h2>
+      <h2>Links stay in this tab</h2>
       <p>
         Everything runs locally. URLs often contain search terms, identifiers, and tokens, so
         the page does not send them anywhere, log them, or keep them in storage.

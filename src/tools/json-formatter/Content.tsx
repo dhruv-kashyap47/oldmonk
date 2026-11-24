@@ -27,6 +27,31 @@ export const faq: readonly FAQItem[] = [
     answer:
       "Not beyond the range of a JavaScript number. JSON itself does not distinguish an integer from a decimal, and this parser stores numbers as IEEE 754 doubles. An ID such as 9007199254740993 should stay a string in your source document.",
   },
+  {
+    question: "Does formatting change the text in the input box?",
+    answer:
+      "No. The input keeps exactly what you pasted, and the formatted result appears in a separate read-only field. Sorting keys and changing the indent only affect that output.",
+  },
+  {
+    question: "Why is the formatted output larger than the input?",
+    answer:
+      "Indentation and line breaks add bytes, so a compact document grows. The counts under the result show both sizes, and the JSON minifier does the opposite step.",
+  },
+  {
+    question: "Can I format a document that is just an array or a single value?",
+    answer:
+      "Yes. The parser accepts any JSON value at the top level, including an array, a string, a number, true, false, and null. Only the syntax has to be valid.",
+  },
+  {
+    question: "Do the indent choice and the sort setting survive a reload?",
+    answer:
+      "No. The page keeps neither the settings nor the text in storage, so a reload starts with two spaces and sorting off.",
+  },
+  {
+    question: "What do the byte counts under the result mean?",
+    answer:
+      "They are UTF-8 sizes of the input and the formatted output, not character counts. A document with accented letters or emoji uses more bytes than its visible length.",
+  },
 ];
 
 export default function JsonFormatterContent() {
@@ -38,7 +63,7 @@ export default function JsonFormatterContent() {
         into a config file, a test fixture, or a bug report.
       </p>
 
-      <h2>How to use it</h2>
+      <h2>Format JSON in four steps</h2>
       <ol>
         <li>Paste or type a JSON document in the input field.</li>
         <li>Choose two spaces, four spaces, or a tab for indentation.</li>
@@ -56,7 +81,7 @@ export default function JsonFormatterContent() {
         stopped and explains what it expected. The input is never partially rewritten.
       </p>
 
-      <h2>What it does</h2>
+      <h2>What the formatter changes</h2>
       <p>
         The parser follows the JSON grammar directly instead of relying on a browser error
         message. That is why every syntax error gets a stable location. Objects and arrays
@@ -76,7 +101,7 @@ export default function JsonFormatterContent() {
         value as a string.
       </p>
 
-      <h2>Limits</h2>
+      <h2>The 5 MB input cap</h2>
       <p>
         Input is capped at 5 MB of UTF-8 text. Parsing happens on the main thread, so a
         document near the cap can briefly make the page busy. The tool does not stream, and
@@ -84,7 +109,7 @@ export default function JsonFormatterContent() {
         truncated output, a dedicated command line parser is the better tool.
       </p>
 
-      <h2>Why format at all</h2>
+      <h2>When pretty printing helps</h2>
       <p>
         Minified JSON is efficient to send and hard to read. Pretty-printing makes the
         structure visible, which helps when you are comparing two API responses, reviewing
@@ -93,7 +118,7 @@ export default function JsonFormatterContent() {
         diff shows the real change.
       </p>
 
-      <h2>Privacy</h2>
+      <h2>Your JSON stays in this tab</h2>
       <p>
         The document is processed locally. Nothing is uploaded, logged, or added to
         analytics. The formatter does not keep your input in local storage, so a reload

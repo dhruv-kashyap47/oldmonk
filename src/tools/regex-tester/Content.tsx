@@ -27,6 +27,31 @@ export const faq: readonly FAQItem[] = [
     answer:
       "No. The preview is a separate string built from the same pattern and flags. Your test text stays untouched, and you can copy the preview if you want to use the result. Without the g flag, only the first match is replaced.",
   },
+  {
+    question: "What does the index number count?",
+    answer:
+      "It is the zero-based position where the match starts, so the first character of the text sits at index 0. It is the same value a JavaScript match reports.",
+  },
+  {
+    question: "Do I include the slashes around the pattern?",
+    answer:
+      "No. Type the pattern itself, and use the checkboxes for flags. Slashes are delimiters in some languages, and here they would be matched as literal characters.",
+  },
+  {
+    question: "Why does a capture group show not matched?",
+    answer:
+      "The group did not take part in that match, usually because it sits inside an optional part of the pattern. The table says not matched, which differs from a group that matched an empty string.",
+  },
+  {
+    question: "Can I use named groups and lookbehind?",
+    answer:
+      "Both work when your browser supports them, because the pattern is compiled by the browser's own engine. An unsupported syntax produces a pattern error instead of a result.",
+  },
+  {
+    question: "How do I stop after the first match?",
+    answer:
+      "Clear the g checkbox. The tester then lists one match and the replace preview changes one occurrence, which matches how a plain String.replace call behaves.",
+  },
 ];
 
 export default function RegexTesterContent() {
@@ -39,7 +64,7 @@ export default function RegexTesterContent() {
         your code.
       </p>
 
-      <h2>How to use it</h2>
+      <h2>Test a pattern in five steps</h2>
       <ol>
         <li>Type a pattern, or pick one from the pattern library to fill in a working example.</li>
         <li>Toggle the flags you need. The g flag is on by default so every match is listed.</li>
@@ -51,7 +76,7 @@ export default function RegexTesterContent() {
         <li>Add a replacement to see the result of a replace operation with the same pattern.</li>
       </ol>
 
-      <h2>What the flags do</h2>
+      <h2>What each flag changes</h2>
       <p>
         The g flag repeats the search through the whole input. Without it, the tester reports the
         first match only, which is also how a browser replace behaves. The i flag ignores case. The
@@ -65,7 +90,7 @@ export default function RegexTesterContent() {
         matching is useful for parsers that walk through a string one token at a time.
       </p>
 
-      <h2>Matches and groups</h2>
+      <h2>How to read matches and groups</h2>
       <p>
         Each entry lists the zero-based index where the match starts and the exact text it covers.
         Numbered capture groups follow in parentheses order. A group that did not take part in the
@@ -80,7 +105,7 @@ export default function RegexTesterContent() {
         occurrence.
       </p>
 
-      <h2>Zero-length matches</h2>
+      <h2>Matches that cover no characters</h2>
       <p>
         Some patterns match a position without consuming a character, such as a lookahead or an
         anchor. The tester advances one position after a zero-length match so the search always
@@ -88,7 +113,7 @@ export default function RegexTesterContent() {
         lookahead matches can confirm that a pattern would split a string at the right places.
       </p>
 
-      <h2>Safety and limits</h2>
+      <h2>The worker timeout and match caps</h2>
       <p>
         Matching runs in a Web Worker with a 750 millisecond limit. If the worker does not answer
         in time, it is terminated and the page reports a timeout. That protects the interface from

@@ -26,7 +26,8 @@ export function ProsePage(props: {
       <main id="main" class="pb-16">
         <Container width="tool" class="pt-8">
           <Breadcrumbs items={crumbs()} />
-          <h1 class="mt-6 font-serif text-[clamp(2.25rem,4.5vw,3.25rem)] leading-[1.05] font-semibold tracking-tight text-ink">
+          <div class="hero-rule mt-6 h-[3px] w-14 bg-accent-warm" aria-hidden="true" />
+          <h1 class="mt-5 font-serif text-[clamp(2.25rem,4.5vw,3.25rem)] leading-[1.05] font-semibold tracking-tight text-ink">
             {props.title}
           </h1>
           <p class="mt-4 max-w-[62ch] text-lg leading-relaxed text-muted">{props.summary}</p>

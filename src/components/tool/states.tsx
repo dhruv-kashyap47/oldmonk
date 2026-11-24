@@ -2,7 +2,7 @@ import type { JSX } from "@solidjs/web";
 
 export function EmptyState(props: { title: string; children?: JSX.Element }) {
   return (
-    <div class="rounded-panel border border-dashed border-line bg-surface-2/60 p-6">
+    <div class="rounded-panel border border-line bg-surface p-6">
       <p class="text-sm font-medium text-ink">{props.title}</p>
       <div class="mt-1 text-sm leading-relaxed text-muted">{props.children}</div>
     </div>

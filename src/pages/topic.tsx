@@ -3,6 +3,8 @@ import { useLocation } from "@solidjs/router";
 import { getTopic } from "../content/topics";
 import { getCategory } from "../content/categories";
 import { getToolsByTopic } from "../tools/registry";
+import { formatCount } from "../lib/format";
+import { categoryColor } from "../lib/category-style";
 import { breadcrumbSchema } from "../seo/schema";
 import { MetaTags } from "../components/seo/MetaTags";
 import { JsonLd } from "../components/seo/JsonLd";
@@ -35,13 +37,16 @@ export default function TopicPage() {
             <main id="main" class="pb-16">
               <Container class="pt-8">
                 <Breadcrumbs items={crumbs()} />
-                <h1 class="mt-6 max-w-[18ch] font-serif text-[clamp(2.5rem,5vw,3.75rem)] leading-[1.02] font-semibold tracking-tight text-ink">
+                <div
+                  class="hero-rule mt-6 h-[3px] w-14"
+                  style={`background-color:${categoryColor("developer")}`}
+                  aria-hidden="true"
+                />
+                <h1 class="mt-5 max-w-[18ch] font-serif text-[clamp(2.5rem,5vw,3.75rem)] leading-[1.02] font-semibold tracking-tight text-ink">
                   {current.name}
                 </h1>
                 <p class="mt-4 max-w-[60ch] text-lg leading-relaxed text-muted">{current.intro}</p>
-                <p class={`${monoMeta} mt-3`}>
-                  {rows().length} {rows().length === 1 ? "tool" : "tools"} in this cluster
-                </p>
+                <p class={`${monoMeta} mt-3`}>{formatCount(rows().length, "tool")} in this cluster</p>
               </Container>
 
               <Container class="mt-12">
@@ -55,7 +60,9 @@ export default function TopicPage() {
                   }
                 >
                   <ul>
-                    <For each={rows()}>{(tool) => <CatalogRow tool={tool} />}</For>
+                    <For each={rows()}>
+                      {(tool, index) => <CatalogRow tool={tool} index={index()} />}
+                    </For>
                   </ul>
                 </Show>
               </Container>

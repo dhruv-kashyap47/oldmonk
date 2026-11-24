@@ -27,6 +27,31 @@ export const faq: readonly FAQItem[] = [
     answer:
       "Yes, one list can hold 10,000 names. That cap keeps parsing and redrawing responsive in a browser tab. Blank lines and empty comma fields are dropped before the count is checked.",
   },
+  {
+    question: "What happens if I edit the names after a draw?",
+    answer:
+      "The list is reparsed and the pool is rebuilt from the new text, so the winner card clears and any team split disappears. History stays, because it records what was already drawn.",
+  },
+  {
+    question: "How many winners does the history show?",
+    answer:
+      "It keeps the 50 most recent winners and prints the newest 10, with a line counting the rest. Copy history writes all the stored names, one per line.",
+  },
+  {
+    question: "How is this different from the spin wheel?",
+    answer:
+      "The wheel gives every line an equal sector and can pick the same entry again. This page can remove winners from the pool, reads commas as separators, and builds teams.",
+  },
+  {
+    question: "Why did one name become two entries?",
+    answer:
+      "The parser treats every comma as a separator, so a pasted Smith, John becomes Smith and John. Remove the comma or write the name in the order you want, one entry per line.",
+  },
+  {
+    question: "Can I paste a list from a spreadsheet?",
+    answer:
+      "Yes. A copied column arrives one name per line, and a copied row with commas is split correctly. Blank cells and stray spaces are dropped before the count.",
+  },
 ];
 
 export default function RandomNamePickerContent() {
@@ -38,7 +63,7 @@ export default function RandomNamePickerContent() {
         the pool is reset.
       </p>
 
-      <h2>How to use it</h2>
+      <h2>Add names and draw a winner</h2>
       <ol>
         <li>
           Paste one name per line, or separate names with commas. Spaces around each name are
@@ -97,7 +122,7 @@ export default function RandomNamePickerContent() {
         from the full name list, not from the current no-repeat pool.
       </p>
 
-      <h2>Limits and privacy</h2>
+      <h2>List size and what stays in the tab</h2>
       <p>
         A single list is capped at 10,000 names. Parsing and drawing happen on the main thread, so a
         very large list can take a moment to update. The list stays in this tab, with no network

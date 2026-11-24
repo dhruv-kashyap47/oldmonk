@@ -40,7 +40,7 @@ The gate:
 - [ ] **Tokens only.** Colors, radii, spacing, and type come from the CSS variables in `src/styles/app.css`. No raw hex in components, no ad hoc pixel values for spacing.
 - [ ] **Type.** Bitter 500 to 700 for display. System sans for UI. System mono for code and for metadata (12px, `0.03em` tracking, muted). Metadata mono is for counts, kind, and dates only, never for labels or buttons.
 - [ ] **Catalog rows.** One solid rule above the row, none below. No card, no shadow, no rounded container, no left border. Name, one-line description, then category and metadata on a shared baseline.
-- [ ] **Category markers.** A 6px dot plus an 8 percent tint chip (14 percent in dark). One per row. Never fills a row, never colors a heading, never appears as a border.
+- [ ] **Category markers.** A tint chip with a category-color mono label (8 percent tint, 14 percent in dark). No dot. One per row. Never fills a row, never colors a heading, never appears as a border.
 - [ ] **Tool pages.** Breadcrumb, H1, summary, badges, panel (880px standard, 1200px wide), actions, spec grid, how-to, ad slot, explanation, FAQ, related tools, footer.
 - [ ] **Spec grid.** Two columns, 48px column gap, 40px row gap, label 13px muted, value 15px ink. It ships with the first tool page.
 - [ ] **Rules and focus.** Dashed hairlines in filter groups only. Focus is a 2px surface ring inside a 4px focus ring.

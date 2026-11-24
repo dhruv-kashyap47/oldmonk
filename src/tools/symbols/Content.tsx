@@ -27,6 +27,31 @@ export const faq: readonly FAQItem[] = [
     answer:
       "Many do, because the common hearts, stars, arrows, and currency signs live in widely installed fonts. Newer emoji and some aesthetic marks are missing from older systems, where they may show as a box. Paste into the final app to check before you rely on a symbol in a name or a heading.",
   },
+  {
+    question: "Can I search by typing the symbol itself?",
+    answer:
+      "Yes. The search text includes the character as well as its name, keywords, and category, so a pasted heart or star matches. Typing a name is usually faster than finding the character on a keyboard.",
+  },
+  {
+    question: "What happens when I combine a search with a category?",
+    answer:
+      "Both filters apply at once. Pick Arrows and type double to see only arrow entries that match, then switch the category back to All to search the full catalog.",
+  },
+  {
+    question: "Can I copy a symbol with the keyboard?",
+    answer:
+      "Yes. Each tile is a button, so Tab moves through the grid and Enter or Space copies the focused symbol. Copy all visible is a button too, and the confirmation appears in a status line.",
+  },
+  {
+    question: "Why does a two word search return fewer results?",
+    answer:
+      "Every word in the query has to match the same entry. White star finds entries that mention both words, while star alone returns the full star set. Drop a word when the list looks too short.",
+  },
+  {
+    question: "Does this page restyle whole words?",
+    answer:
+      "This page copies single characters, such as a heart, an arrow, or a currency sign. A fancy text generator rewrites whole letters into styled alphabets, which is a different job and a different output.",
+  },
 ];
 
 export default function SymbolsContent() {
@@ -38,7 +63,7 @@ export default function SymbolsContent() {
         reach for most, names them, and copies one on a click.
       </p>
 
-      <h2>Eight categories</h2>
+      <h2>Eight symbol categories</h2>
       <p>
         Hearts covers the card suit pair, outlined forms, floral hearts, and the common
         color emoji. Stars runs from a plain filled star to four pointed sparkles and an
@@ -98,7 +123,7 @@ export default function SymbolsContent() {
         Keep a text label beside it when the action matters.
       </p>
 
-      <h2>Privacy</h2>
+      <h2>Search and recents stay in this browser</h2>
       <p>
         The catalog is part of the page. Search and filtering happen in the browser, and no
         symbol, query, or recent list is sent anywhere. The only stored data is the recent

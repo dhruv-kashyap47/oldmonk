@@ -5,12 +5,19 @@ export function ThemeToggle() {
   return (
     <button
       type="button"
-      class={`${focusRing} inline-flex size-9 items-center justify-center rounded-control border border-line text-muted transition-colors duration-150 hover:border-accent hover:text-ink`}
+      class={`${focusRing} group inline-flex size-9 items-center justify-center rounded-control border border-line text-muted transition-colors duration-150 hover:border-accent hover:text-ink`}
       aria-label="Switch between light and dark theme"
       title="Switch theme"
       onClick={() => toggleTheme()}
     >
-      <svg viewBox="0 0 24 24" class="size-4" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+      <svg
+        viewBox="0 0 24 24"
+        class="size-4 transition-transform duration-300 group-hover:rotate-45"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.6"
+        aria-hidden="true"
+      >
         <circle cx="12" cy="12" r="4.5" />
         <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" />
       </svg>

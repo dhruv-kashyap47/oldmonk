@@ -27,6 +27,31 @@ export const faq: readonly FAQItem[] = [
     answer:
       "No. A chosen file is read with the browser File API, turned into bytes in this tab, and encoded locally. There is no network request.",
   },
+  {
+    question: "Does decoding ignore line breaks?",
+    answer:
+      "Yes. Whitespace anywhere in the input is removed before decoding, so Base64 wrapped across several lines still works.",
+  },
+  {
+    question: "Can I paste a full data URL?",
+    answer:
+      "No. Paste only the Base64 part after the comma. The colon and semicolon in a data URL are outside the alphabet, so the decoder rejects them.",
+  },
+  {
+    question: "Can I turn Base64 back into a file here?",
+    answer:
+      "No. File mode only encodes a local file, and decoding produces text in the panel. Use a binary-aware decoder for images, archives, or other files.",
+  },
+  {
+    question: "What happens to a file over 10 MB?",
+    answer:
+      "The page rejects it before reading and shows a message, so the tab stays responsive. The same 10 MB cap applies to text input.",
+  },
+  {
+    question: "Do the byte counts measure characters or bytes?",
+    answer:
+      "They measure bytes. Text is converted to UTF-8 first, so an emoji counts as four bytes even though it looks like one character.",
+  },
 ];
 
 export default function Base64Content() {
@@ -38,7 +63,7 @@ export default function Base64Content() {
         option for tokens and query values.
       </p>
 
-      <h2>How the text mode works</h2>
+      <h2>Encode or decode text in four steps</h2>
       <ol>
         <li>Choose <strong>Text</strong> as the mode and pick a direction.</li>
         <li>
@@ -59,7 +84,7 @@ export default function Base64Content() {
         replacement characters.
       </p>
 
-      <h2>How the file mode works</h2>
+      <h2>Encoding a local file</h2>
       <p>
         Choose a file and press <strong>Encode file</strong>. The browser reads the file with
         the File API and hands the bytes to the encoder. The bytes stay in this tab, and the
@@ -71,7 +96,7 @@ export default function Base64Content() {
         decoder.
       </p>
 
-      <h2>Why the output is larger</h2>
+      <h2>Why the output is about a third larger</h2>
       <p>
         Base64 uses 64 symbols, which fit in six bits. Three input bytes hold 24 bits, and
         those become four output characters. The encoded text is therefore about one third
@@ -79,7 +104,7 @@ export default function Base64Content() {
         keeping the data inside a text channel.
       </p>
 
-      <h2>Standard and URL-safe alphabets</h2>
+      <h2>Choosing the URL-safe alphabet</h2>
       <p>
         The standard alphabet uses <code>+</code> and <code>/</code>. Both characters have
         jobs in URLs, where a plus can mean a space and a slash separates path segments. The
@@ -88,7 +113,7 @@ export default function Base64Content() {
         before reading, so a token copied from a URL decodes without manual replacement.
       </p>
 
-      <h2>Invalid input</h2>
+      <h2>Why decoding can fail</h2>
       <p>
         Base64 text can fail for a few reasons. A character outside the alphabet is rejected
         with its position named. Padding in the middle, more than two equals signs, or a length
@@ -96,7 +121,7 @@ export default function Base64Content() {
         output from another tool still decodes.
       </p>
 
-      <h2>Limits and privacy</h2>
+      <h2>The 10 MB cap and local files</h2>
       <p>
         The cap is 10 MB for text input and for a chosen file. Encoding and decoding run on the
         main thread, so work near the cap can take a moment. No request is made, and no file or

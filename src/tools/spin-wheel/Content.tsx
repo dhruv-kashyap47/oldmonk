@@ -23,9 +23,34 @@ export const faq: readonly FAQItem[] = [
       "Yes. The entries are also printed as a numbered list below the wheel, and the result sits in a polite live region. The Spin button is a normal keyboard-operable button, so Tab and Enter are enough.",
   },
   {
-    question: "Where does the randomness come from?",
+    question: "How does the wheel pick a fair sector?",
     answer:
       "Both the winning index and the stop position use the helper in src/lib/random.ts, which reads crypto.getRandomValues and rejects values that would introduce modulo bias. Math.random is never used.",
+  },
+  {
+    question: "Can two entries have the same label?",
+    answer:
+      "Yes. Each line is its own sector, and the wheel does not merge entries with the same text. Two people called Alex get two sectors and two separate chances.",
+  },
+  {
+    question: "What happens to the result when I edit the entries?",
+    answer:
+      "The wheel redraws as you type and the last result clears, so a stale name is not left above a changed wheel. Past results stay in the history until you reset the wheel.",
+  },
+  {
+    question: "How many results are kept?",
+    answer:
+      "The 20 most recent results, newest first. The list prints the first 10 and adds a count of the older ones, and Copy results writes every stored label, one per line.",
+  },
+  {
+    question: "What does a reload keep?",
+    answer:
+      "Nothing from your session. The page returns with the sample entries, an unspun wheel, and an empty history. Copy the results first if you need them.",
+  },
+  {
+    question: "How is this different from the random name picker?",
+    answer:
+      "The wheel draws from one entry per line and can pick the same entry twice. The name picker reads commas, keeps a no-repeat pool, and splits a list into teams.",
   },
 ];
 
@@ -38,7 +63,7 @@ export default function SpinWheelContent() {
         The result, the entries, and the history stay in the page.
       </p>
 
-      <h2>How to use it</h2>
+      <h2>Add entries and spin</h2>
       <ol>
         <li>Type or paste one entry per line in the Entries field.</li>
         <li>
@@ -92,7 +117,7 @@ export default function SpinWheelContent() {
         number, label, and order all carry the meaning.
       </p>
 
-      <h2>Limits and privacy</h2>
+      <h2>Blank lines, duplicates, and a fresh reload</h2>
       <p>
         The editor accepts one entry per line and ignores blank lines. Entries are not deduplicated,
         because two people may share a name. History keeps the 20 most recent results for the

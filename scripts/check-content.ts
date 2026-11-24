@@ -39,6 +39,10 @@ function countBetween(html: string, attribute: string, tag: string): number {
   return (container[1]?.match(new RegExp(`<${tag}\\b`, "gi")) ?? []).length;
 }
 
+function countFaq(html: string): number {
+  return (html.match(/data-faq-item/g) ?? []).length;
+}
+
 async function main(): Promise<void> {
   const issues: string[] = [];
   const rows: string[] = [];
@@ -55,7 +59,7 @@ async function main(): Promise<void> {
     const text = textOf(html);
     const words = text.split(" ").filter((word) => word.length > 0).length;
     const specs = countBetween(html, "data-spec-grid", "dt");
-    const faqs = countBetween(html, "data-faq", "dt");
+    const faqs = countFaq(html);
     const related = new Set(
       (html.match(/href="\/([a-z0-9-]+)"/g) ?? [])
         .map((value) => value.slice(7, -1))
@@ -65,7 +69,7 @@ async function main(): Promise<void> {
     const minimum = tool.category === "developer" ? 500 : 350;
     if (words < minimum) issues.push(`${tool.slug}: ${words} words, needs ${minimum}.`);
     if (specs < 4 || specs > 6) issues.push(`${tool.slug}: ${specs} specs, needs 4 to 6.`);
-    if (faqs < 3 || faqs > 5) issues.push(`${tool.slug}: ${faqs} FAQs, needs 3 to 5.`);
+    if (faqs < 8 || faqs > 12) issues.push(`${tool.slug}: ${faqs} FAQs, needs 8 to 12.`);
     if (related < 3 || related > 6) issues.push(`${tool.slug}: ${related} related links, needs 3 to 6.`);
     if (facts.title !== titleWithSuffix(tool.title)) issues.push(`${tool.slug}: title mismatch.`);
     if (facts.canonical !== absoluteUrl(`/${tool.slug}`)) issues.push(`${tool.slug}: canonical mismatch.`);

@@ -27,6 +27,31 @@ export const faq: readonly FAQItem[] = [
     answer:
       "No. It is a simple response time game. It does not diagnose anything and it does not measure attention, intelligence, or fitness. If you have a concern about reaction time or coordination, speak with a qualified professional rather than relying on a web page.",
   },
+  {
+    question: "What happens if I reload during the five rounds?",
+    answer:
+      "The run starts over. Only the best mean is kept in this browser, so the round times in progress are lost and the panel returns to Start test.",
+  },
+  {
+    question: "Can I do the test with the keyboard?",
+    answer:
+      "Yes. The signal panel is a button and takes focus at the start of each round. Press Space or Enter as soon as it turns green, then use the same keys on the Next round button to continue.",
+  },
+  {
+    question: "What does the note about a slow round mean?",
+    answer:
+      "The note appears when one round is more than twice the median time for the run. It describes that round and does not guess a cause, so fatigue, a distraction, or a missed signal are all possible.",
+  },
+  {
+    question: "Does tapping the panel work on a touch screen?",
+    answer:
+      "Yes. The panel is one large touch target, and a tap is recorded the same way as a mouse click. A touch screen can add its own delay, so compare runs made on the same device.",
+  },
+  {
+    question: "Is reaction time the same as clicking speed?",
+    answer:
+      "This test measures the delay between a signal and your response, in milliseconds, across five rounds. The Click Speed Test counts how many clicks you make in ten seconds and reports clicks per second. A quick reaction and a fast clicking pace are different measurements.",
+  },
 ];
 
 export default function ReactionTimeTestContent() {
@@ -38,7 +63,7 @@ export default function ReactionTimeTestContent() {
         can see both the typical result and the spread.
       </p>
 
-      <h2>How to use it</h2>
+      <h2>Take five reaction rounds</h2>
       <ol>
         <li>Press <strong>Start test</strong>. The panel shows a waiting message.</li>
         <li>
@@ -73,7 +98,7 @@ export default function ReactionTimeTestContent() {
         median resists it, which is why both are shown.
       </p>
 
-      <h2>What the result does and does not mean</h2>
+      <h2>What the result measures</h2>
       <p>
         A reaction time is specific to the task in front of you. This test uses a single visual
         change, one input, and a short run of five attempts. A different screen, a different input
@@ -88,7 +113,7 @@ export default function ReactionTimeTestContent() {
         new run beats it.
       </p>
 
-      <h2>Timing limits</h2>
+      <h2>What browser timing adds</h2>
       <p>
         Browser timing is good enough to compare your own attempts, and it has a floor. The display
         refreshes in steps, the operating system delivers input in steps, and the tab may be
@@ -98,7 +123,7 @@ export default function ReactionTimeTestContent() {
         to compare runs.
       </p>
 
-      <h2>Privacy</h2>
+      <h2>Your best mean in this browser</h2>
       <p>
         The test runs entirely in this tab. Nothing is uploaded, and no account is needed. Only
         your best mean is stored, in this browser, so it can be shown on a later visit. Clearing

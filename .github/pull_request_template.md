@@ -11,7 +11,7 @@ Briefly describe the change and the route or tool it touches.
 - [ ] Keyboard path, labels, and result announcements work.
 - [ ] Mobile 360px has no horizontal page scroll.
 - [ ] Title, description, canonical, H1, and JSON-LD are unique and valid.
-- [ ] Content is real: how-to, limits, privacy, and 3 to 5 FAQs.
+- [ ] Content is real: how-to, limits, privacy, and 8 to 10 FAQs.
 - [ ] Related tools resolve and are added to the registry.
 - [ ] No em dashes: `npm run check:copy` passes.
 

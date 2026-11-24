@@ -66,13 +66,13 @@ From `pangram`'s feature tints, which is the only reference that uses color as t
 
 | Marker | Token | Usage |
 | --- | --- | --- |
-| Developer | `--cat-dev` | 8% tint chip background, full-strength 6px dot, label in `--muted` |
+| Developer | `--cat-dev` | 8% tint chip background, label in `--cat-dev`, no dot |
 | Text | `--cat-text` | Same pattern |
 | Random | `--cat-random` | Same pattern |
 | Timer | `--cat-timer` | Same pattern; small text uses `--cat-timer`, which passes AA |
 | Test | `--cat-test` | Same pattern |
 
-Rules: the tint never fills a row, never colors a heading, and never appears as a left border. One marker per row. In dark mode the tint drops to 14% because the surfaces are lighter than the paper.
+Rules: the tint never fills a row, never colors a heading, and never appears as a left border. One marker per row. In dark mode the tint drops to 14% because the surfaces are lighter than the paper. There is no dot: the label carries the category, and color reinforces it, so color is never the only signal.
 
 Two other patterns are worth keeping. First, a **1px dashed `--line`** separating filter groups only: catalog rows keep the solid rule above, and the footer stays plain. Second, a **double-ring focus state**, 2px `--surface` inside a 4px `--focus` outer, instead of the browser default.
 
@@ -87,5 +87,17 @@ Do not reintroduce these from the reference files: cinematic full-bleed imagery,
 | Mono stack | System mono, shared with code output | No extra font, no extra preload. Accept per-OS rendering differences. |
 | Spec grid | Ships with the first tool page | Built and reviewed inside the design gate; no follow-up layout pass. |
 | Dashed rules | Filter groups only | Catalog rows keep one solid rule above; footer groups stay plain. |
+| Category marker | Tint chip with a category-ink label, no dot | Color reinforces the label and is never the only signal. Category ink is mixed 72 percent toward `--ink` so 12px text clears AA on the tint. |
+| Category rule | A 2px rule in the category color under a category heading, plus a colored count | Gives each section a color anchor without filling a row or coloring a heading. |
+
+## 9. Revision 2026-11-24
+
+The owner asked for a warmer, less templated catalog. Changes, all recorded here before they shipped:
+
+- **Dots removed.** The 6px dot is gone. The label carries the category, and the chip uses a mixed ink color so the text passes AA on the 8 percent tint (14 percent in dark). `AGENTS.md` and this file were updated in the same change.
+- **Section headings rewritten.** Generic tool-page headings ("How to use it", "What it does", "Limits", "Privacy") were replaced with per-tool headings in plain language. Body copy and section order are unchanged.
+- **FAQ expanded.** Every tool page now has 10 questions, and every answer is visible in the HTML. The list uses the ui-sdk accordion with all items open by default.
+- **Motion.** Catalog rows settle with a 240ms stagger, the hero and category rules draw in, rows take a 6 percent tint on hover, the name shifts 3px, and the FAQ panel animates its height. Reduced motion removes all of it.
+- **No route progress bar.** A top loading bar looked right but pulled the router graph into the initial bundle and took the home page from 73 to 81 KB gzip. The budget stays at 75 KB and the bar is out.
 
 Revisit only if the design gate (G-01) fails on row legibility or metadata rendering.

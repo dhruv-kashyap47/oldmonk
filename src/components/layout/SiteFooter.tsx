@@ -1,5 +1,6 @@
 import { For } from "solid-js";
 import { categories } from "../../content/categories";
+import { categoryColor, categoryInk } from "../../lib/category-style";
 import { site } from "../../seo/site";
 import { Container } from "./Container";
 import { focusRing } from "../ui/styles";
@@ -14,7 +15,10 @@ const siteLinks = [
 
 export function SiteFooter() {
   return (
-    <footer class="mt-24 border-t border-line py-12">
+    <footer
+      class="mt-24 border-t-2 py-12"
+      style="border-top-color: color-mix(in srgb, var(--color-accent-warm) 45%, var(--color-line))"
+    >
       <Container class="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
         <div class="lg:col-span-2">
           <a href="/" class={`${focusRing} inline-flex items-center gap-2 rounded-control no-underline`}>
@@ -40,10 +44,10 @@ export function SiteFooter() {
           <ul class="mt-3 flex flex-col gap-2 text-sm">
             <For each={categories}>
               {(category) => (
-                <li>
+                <li style={`--cat-color:${categoryColor(category.slug)};--cat-ink:${categoryInk(category.slug)}`}>
                   <a
                     href={category.path}
-                    class={`${focusRing} rounded-control text-muted underline-offset-4 hover:text-ink hover:underline`}
+                    class={`${focusRing} rounded-control text-muted underline-offset-4 hover:text-[var(--cat-ink)] hover:underline`}
                   >
                     {category.name}
                   </a>

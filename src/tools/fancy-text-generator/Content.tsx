@@ -27,6 +27,31 @@ export const faq: readonly FAQItem[] = [
     answer:
       "No. Every preview is built in this browser tab from a local character table. The text is not uploaded, there is no account, and a reload clears the field.",
   },
+  {
+    question: "Why does the character count change with the style?",
+    answer:
+      "The count follows code points, and a style can use one code point per letter or add a combining mark. Strikethrough adds one mark after each visible character, so its count is higher.",
+  },
+  {
+    question: "Which styles give numbers a styled form?",
+    answer:
+      "Bold, sans bold, double-struck, circled, fullwidth, and monospace map digits. The other styles keep the digit glyphs as typed, and strikethrough adds a stroke over them.",
+  },
+  {
+    question: "Can I style emoji or text in another script?",
+    answer:
+      "The maps cover Latin letters and digits. Emoji, Greek, Cyrillic, Japanese, and punctuation pass through as typed, so a mixed line keeps its original symbols.",
+  },
+  {
+    question: "What does Copy all styles produce?",
+    answer:
+      "One line per style, written as the style name, a colon, and the styled text. Paste it into a document to compare the styles side by side.",
+  },
+  {
+    question: "How is this different from the cursive text generator?",
+    answer:
+      "This page shows fifteen styles, including bold, fraktur, circled, monospace, and upside down. The cursive page narrows the list to four handwriting styles and adds a signature block.",
+  },
 ];
 
 export default function FancyTextGeneratorContent() {
@@ -62,7 +87,7 @@ export default function FancyTextGeneratorContent() {
         table and reverses the order of each line.
       </p>
 
-      <h2>Where the styles render</h2>
+      <h2>Which devices draw the letters</h2>
       <p>
         Font coverage is the limit. Apple platforms generally include the mathematical
         alphabets, and current versions of Windows and Android cover most of them. Script
@@ -78,7 +103,7 @@ export default function FancyTextGeneratorContent() {
         Check the counter in the app after pasting.
       </p>
 
-      <h2>Fallback and cleanup</h2>
+      <h2>Letters that stay plain</h2>
       <p>
         Latin letters A to Z and digits 0 to 9 are covered wherever the chosen Unicode
         style defines them. The script and fraktur families, and italic, have no digit set,
@@ -93,7 +118,7 @@ export default function FancyTextGeneratorContent() {
         for display, and keep the plain line for anything that must be matched exactly.
       </p>
 
-      <h2>Accessibility</h2>
+      <h2>What screen readers read aloud</h2>
       <p>
         A screen reader may announce the name of each styled code point rather than the
         letter it resembles. What sounds like a short name to you can become a long string
@@ -102,7 +127,7 @@ export default function FancyTextGeneratorContent() {
         and write the important information again in ordinary letters.
       </p>
 
-      <h2>Using the previews</h2>
+      <h2>Copy one style or all fifteen</h2>
       <p>
         Type once and every style updates in place. Each card has its own copy button, and
         the copy all button produces a labelled list so you can compare the styles in a

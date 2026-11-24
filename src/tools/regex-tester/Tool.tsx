@@ -358,7 +358,7 @@ export default function RegexTesterTool() {
                                 <For each={match.groups}>
                                   {(group, groupIndex) => (
                                     <span class="rounded-control bg-surface-2 px-2 py-0.5 font-mono text-[11px] text-muted">
-                                      Group {groupIndex() + 1}: {group ?? "undefined"}
+                                      Group {groupIndex() + 1}: {group ?? "not matched"}
                                     </span>
                                   )}
                                 </For>
@@ -369,7 +369,7 @@ export default function RegexTesterTool() {
                                 <For each={match.namedGroups}>
                                   {(group) => (
                                     <span class="rounded-control bg-accent/10 px-2 py-0.5 font-mono text-[11px] text-accent">
-                                      {group.name}: {group.value ?? "undefined"}
+                                      {group.name}: {group.value ?? "not matched"}
                                     </span>
                                   )}
                                 </For>

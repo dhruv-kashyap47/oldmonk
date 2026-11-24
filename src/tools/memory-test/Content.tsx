@@ -27,6 +27,31 @@ export const faq: readonly FAQItem[] = [
     answer:
       "It means you repeated this particular sequence well in this particular run. A short grid game cannot measure memory in general, and it is not a clinical or cognitive assessment. Sleep, attention, screen size, and familiarity with the game all affect the result. Use it as a light challenge or a way to compare your own runs.",
   },
+  {
+    question: "Is a run saved if I reload the page?",
+    answer:
+      "No. Only the best number of cleared levels is stored, so a reload ends the current run and returns the panel to Start. The best stays in this browser and is replaced only by a run that clears more levels.",
+  },
+  {
+    question: "Can I play the grid with taps?",
+    answer:
+      "Yes. The nine tiles are ordinary buttons with a square touch area, so tapping works without a keyboard. The number keys are optional.",
+  },
+  {
+    question: "What happens if I tap a tile while the sequence is playing?",
+    answer:
+      "Nothing. The tiles are disabled during playback, and the game ignores input until the panel says Your turn. Waiting for that message stops a stray tap from being scored as a wrong tile.",
+  },
+  {
+    question: "How is this different from the Reaction Time Test?",
+    answer:
+      "This game asks you to hold a growing sequence in mind and repeat it. The Reaction Time Test shows one signal and measures how quickly you respond. A score here counts cleared levels rather than milliseconds.",
+  },
+  {
+    question: "Does reduced motion change the difficulty?",
+    answer:
+      "It shortens each flash to about half its usual length and the gap between tiles from 450 milliseconds to about 225. The sequence and the score do not change, but the shorter display gives you less time to see each tile. The setting is read from your system preferences and followed while the page is open.",
+  },
 ];
 
 export default function MemoryTestContent() {
@@ -38,7 +63,7 @@ export default function MemoryTestContent() {
         the first wrong tile, and the number of cleared levels becomes your score.
       </p>
 
-      <h2>How to play</h2>
+      <h2>Repeat the growing sequence</h2>
       <ol>
         <li>Press <strong>Start</strong>. The first tile flashes.</li>
         <li>
@@ -90,7 +115,7 @@ export default function MemoryTestContent() {
         input method all change the task.
       </p>
 
-      <h2>Limits</h2>
+      <h2>What can end a run early</h2>
       <p>
         This is a short visual sequence game, not a memory assessment. It cannot separate memory
         from attention, strategy, or familiarity with the grid. A distraction between two tiles,
@@ -100,7 +125,7 @@ export default function MemoryTestContent() {
         shortened to compensate.
       </p>
 
-      <h2>Privacy</h2>
+      <h2>What the game stores</h2>
       <p>
         The game runs locally in this tab. Nothing is sent anywhere, and no account is required.
         Only the best number of cleared levels is stored, in this browser, and clearing site data

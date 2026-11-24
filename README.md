@@ -2,12 +2,12 @@
 
 A browser-first tools platform: fast, private utilities for code, text, random picks, timers, and small tests. Every tool runs locally. There is no signup, no upload, and no tool backend.
 
-**Status:** Phase 1 platform plus the tool catalog. The build prerenders every route to static HTML and fails on a broken link, a missing canonical, a thin description, an invalid JSON-LD block, or an over-budget bundle.
+**Status:** Platform and the 24-tool catalog. The build prerenders every route to static HTML and fails on a broken link, a missing canonical, a thin description, an invalid JSON-LD block, or an over-budget bundle.
 
 ## Documents
 
 - [Plan.md](./Plan.md): product, architecture, SEO, design system, risks, effort.
-- [Task.md](./Task.md): phase checklist and per-tool definition of done.
+- [Task.md](./Task.md): sprint board, forward queue, and per-tool definition of done.
 - [Audit.md](./Audit.md): what was inspected in the five open-source repos.
 - [PORTING.md](./PORTING.md): reuse map and rejected code.
 - [THIRD_PARTY_NOTICES.md](./THIRD_PARTY_NOTICES.md): licenses and attribution.

@@ -36,7 +36,12 @@ export function CopyButton(props: {
 
   return (
     <span class={`inline-flex flex-wrap items-center gap-2 ${props.class ?? ""}`}>
-      <Button variant="secondary" onClick={() => void copy()} disabled={props.text.length === 0}>
+      <Button
+        variant="secondary"
+        class={state() === "copied" ? "copy-pop" : undefined}
+        onClick={() => void copy()}
+        disabled={props.text.length === 0}
+      >
         {state() === "copied" ? "Copied" : (props.label ?? "Copy")}
       </Button>
       <span role="status" aria-live="polite" class="text-xs text-muted">

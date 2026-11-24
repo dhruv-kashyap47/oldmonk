@@ -311,7 +311,7 @@ export default function DiffCheckerTool() {
               <Show
                 when={current().changes.length > 0}
                 fallback={
-                  <p class="mt-4 rounded-panel border border-dashed border-line bg-surface-2/60 p-4 text-sm text-muted">
+                  <p class="mt-4 rounded-panel border border-line bg-surface-2/60 p-4 text-sm text-muted">
                     The two texts are identical under the current options.
                   </p>
                 }

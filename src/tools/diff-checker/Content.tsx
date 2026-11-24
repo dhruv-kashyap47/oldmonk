@@ -27,6 +27,31 @@ export const faq: readonly FAQItem[] = [
     answer:
       "The algorithm keeps a trace of its search so it can rebuild the edit list, and that cost grows with the number of differing lines. The cap of 2,000 lines and 200 KB per side keeps the page responsive. For a very large file, compare it with git diff or another command line tool.",
   },
+  {
+    question: "What do the plus and minus signs mean in the unified view?",
+    answer:
+      "A plus marks a line that exists only in the changed text, and a minus marks a line that exists only in the original. A line with a leading space is unchanged context.",
+  },
+  {
+    question: "How do I read a header like @@ -3,7 +3,7 @@?",
+    answer:
+      "The first pair is the starting line and count on the original side, and the second pair is the same for the changed side. Here the hunk starts at line 3 on both sides and covers seven lines.",
+  },
+  {
+    question: "Does Ignore case handle accented letters?",
+    answer:
+      "It uses ordinary lowercasing, so an accented capital and its lowercase form match. Letters whose lowercase form differs in length, such as the Turkish capital I with a dot, can still show as a change.",
+  },
+  {
+    question: "How is this different from git diff?",
+    answer:
+      "The line matching uses the same Myers algorithm family. This page adds word tint inside a replaced line and a copy button, and it compares pasted text rather than a repository.",
+  },
+  {
+    question: "Can I compare a file without opening it?",
+    answer:
+      "There is no file picker. Open each version in an editor and paste it into a field, or use git diff for a file on disk.",
+  },
 ];
 
 export default function DiffCheckerContent() {
@@ -38,7 +63,7 @@ export default function DiffCheckerContent() {
         replaced line.
       </p>
 
-      <h2>How to use it</h2>
+      <h2>Compare two versions in four steps</h2>
       <ol>
         <li>Paste the original text in the left field and the changed text in the right field.</li>
         <li>
@@ -57,7 +82,7 @@ export default function DiffCheckerContent() {
         option, so the result always matches the current text.
       </p>
 
-      <h2>The Myers algorithm</h2>
+      <h2>How the line matching works</h2>
       <p>
         Myers finds the shortest edit script between two sequences. It walks diagonally through a
         grid of line positions, extending the best path at each step, and records how many
@@ -71,7 +96,7 @@ export default function DiffCheckerContent() {
         change in meaning even though the algorithm records two operations.
       </p>
 
-      <h2>Two views</h2>
+      <h2>Side by side and unified views</h2>
       <p>
         Side by side puts the original on the left and the changed text on the right, with line
         numbers on each side. A row with a deletion has an empty right cell, and a row with an
@@ -85,7 +110,7 @@ export default function DiffCheckerContent() {
         can be pasted into a message or a code review.
       </p>
 
-      <h2>Ignoring noise</h2>
+      <h2>Ignore whitespace or case</h2>
       <p>
         Whitespace and case options change only the comparison, not the displayed text.
         Reindenting a block or changing the case of a word can be intentional or accidental, and
@@ -93,7 +118,7 @@ export default function DiffCheckerContent() {
         highlighted line follow the comparison you chose.
       </p>
 
-      <h2>Limits and privacy</h2>
+      <h2>Size limits and local processing</h2>
       <p>
         Each side is limited to 2,000 lines and 200 KB. A large diff can use a lot of memory because
         the algorithm keeps its search history, and a browser tab is not the right place for a

@@ -27,6 +27,31 @@ export const faq: readonly FAQItem[] = [
     answer:
       "No. The page is an independent text tool and is not affiliated with Instagram, Meta, or any of their products. It does not log in, request an account, or send anything to those services. The name is used only to describe the 150 character bio field.",
   },
+  {
+    question: "What happens to my bio if I reload the page?",
+    answer:
+      "It is gone. The field is held in page memory only, so a reload starts with an empty field and the three line sample in the previews. Copy the style you want before you leave.",
+  },
+  {
+    question: "Where does the trim button cut?",
+    answer:
+      "It cuts at exactly 150 code points, the same unit the counter uses. The cut can land in the middle of a word, and it never splits an emoji in half. Read the last line before you paste.",
+  },
+  {
+    question: "Why are the copy buttons off when the page loads?",
+    answer:
+      "The page shows a three line sample until you type, and copy stays off so the sample is never mistaken for your text. Type some text in the field and all nine copy buttons turn on.",
+  },
+  {
+    question: "Why do the digits in my bio stay plain?",
+    answer:
+      "Script, bold script, and italic have no styled digits in the mapping, so numbers keep their normal shape. Accented letters and emoji also keep their original form in every style.",
+  },
+  {
+    question: "Can I style only part of the bio?",
+    answer:
+      "No. Each preview converts the whole field into one alphabet. To mix a styled name with a plain city, copy the name from one preview and type the rest in the app.",
+  },
 ];
 
 export default function InstagramFontsContent() {
@@ -80,7 +105,7 @@ export default function InstagramFontsContent() {
         bio with clear breaks reads better than a longer one with decoration on every line.
       </p>
 
-      <h2>The nine styles</h2>
+      <h2>The nine bio styles</h2>
       <p>
         The set covers bold, italic, bold italic, script, bold script, sans bold,
         double-struck, monospace, and fullwidth. These are Unicode code point substitutions,

@@ -27,6 +27,31 @@ export const faq: readonly FAQItem[] = [
     answer:
       "Browsers block audio until the page has received a click or key press, so the sound is unlocked when you press Start. Check the system volume, the tab mute button, and the site sound setting in your browser. If the tab was in the background for the whole countdown, the chime may have waited until you returned.",
   },
+  {
+    question: "How is this different from the Pomodoro Timer?",
+    answer:
+      "This page counts down one length that you set, then stops at zero. The Pomodoro Timer cycles through work and break phases, chooses the next phase for you, and keeps a daily session count. If you want a single timer with no history, use this page.",
+  },
+  {
+    question: "What does the message under the duration field mean?",
+    answer:
+      "It means the text could not be read as a length. Zero, a negative number, seconds above 59 in the last position, or a total beyond 24 hours all produce it. The timer stays idle until you enter a value that it can run.",
+  },
+  {
+    question: "Can I change the length while the countdown runs?",
+    answer:
+      "No. The duration field and the preset buttons are locked while the timer runs or is paused. Press Reset after pausing to return to an editable full length, or wait for the countdown to finish.",
+  },
+  {
+    question: "Does the tab title show the time left?",
+    answer:
+      "Yes. While the countdown runs, the browser tab shows the remaining time next to the word Countdown, so a pinned tab gives you a glance from another tab. The original title comes back when you pause or reset.",
+  },
+  {
+    question: "Is there a keyboard shortcut to start or pause?",
+    answer:
+      "No global shortcut is defined. The presets and the Start, Pause, and Resume buttons are native buttons, so tab to one and press Enter or Space. This leaves the Space key alone for whatever else you are doing in the browser.",
+  },
 ];
 
 export default function CountdownTimerContent() {
@@ -78,7 +103,7 @@ export default function CountdownTimerContent() {
         finishing time, so the display catches up as soon as you return.
       </p>
 
-      <h2>Limits worth knowing</h2>
+      <h2>Length limits and rejected input</h2>
       <p>
         The maximum length is 24 hours and the minimum is one second. A value of zero, a negative
         number, or a malformed time is rejected with a message next to the field rather than
@@ -86,7 +111,7 @@ export default function CountdownTimerContent() {
         chime only works while the page is open in a tab.
       </p>
 
-      <h2>Sound and privacy</h2>
+      <h2>How the chime works and what is saved</h2>
       <p>
         The chime is generated with the Web Audio API, so there is no audio file to download. The
         first press of Start unlocks audio for the page, which is the gesture browsers require.

@@ -1,7 +1,9 @@
 import { For, Show, createSignal, lazy, onSettled } from "solid-js";
+import { useLocation } from "@solidjs/router";
 import { Loading } from "@solidjs/web";
 import { track } from "../../analytics";
 import { categories } from "../../content/categories";
+import { categoryColor, categoryInk } from "../../lib/category-style";
 import { Kbd } from "../ui/Kbd";
 import { focusRing } from "../ui/styles";
 import { Container } from "./Container";
@@ -22,6 +24,7 @@ function isTypingTarget(target: EventTarget | null): boolean {
 }
 
 export function SiteHeader() {
+  const location = useLocation();
   const [open, setOpen] = createSignal(false);
   const [loaded, setLoaded] = createSignal(false);
   const [navOpen, setNavOpen] = createSignal(false);
@@ -58,7 +61,10 @@ export function SiteHeader() {
 
   return (
     <>
-      <header class="border-b border-line">
+      <header
+        class="border-b border-line border-t-2"
+        style="border-top-color: var(--color-accent-warm)"
+      >
         <Container class="flex h-16 items-center gap-5">
           <a href="/" class={`${focusRing} inline-flex items-center gap-2.5 rounded-control no-underline`}>
             <img
@@ -77,10 +83,11 @@ export function SiteHeader() {
             <ul class="flex items-center gap-4 text-sm text-muted">
               <For each={categories}>
                 {(category) => (
-                  <li>
+                  <li style={`--cat-color:${categoryColor(category.slug)};--cat-ink:${categoryInk(category.slug)}`}>
                     <a
                       href={category.path}
-                      class={`${focusRing} rounded-control px-1 py-2 underline-offset-4 hover:text-ink hover:underline aria-[current=page]:text-ink`}
+                      aria-current={location.pathname === category.path ? "page" : undefined}
+                      class={`${focusRing} rounded-control px-1 py-2 underline-offset-4 hover:text-[var(--cat-ink)] hover:underline aria-[current=page]:text-[var(--cat-ink)]`}
                     >
                       {category.name.replace(" tools", "")}
                     </a>

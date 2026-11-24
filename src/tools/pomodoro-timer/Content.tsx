@@ -27,6 +27,31 @@ export const faq: readonly FAQItem[] = [
     answer:
       "It follows the common cycle of a focus block, a short break, and a longer break after a set of blocks. The technique itself comes from Francesco Cirillo, and this page is an independent timer with adjustable lengths. It is not affiliated with him or with any training material.",
   },
+  {
+    question: "Does the timer keep my screen awake?",
+    answer:
+      "While a phase runs, the page asks for a screen wake lock where the browser supports it. That can keep a laptop or phone screen on. The lock is released when you pause, reset, skip, or the phase ends.",
+  },
+  {
+    question: "What happens if I reload in the middle of a focus block?",
+    answer:
+      "The running clock is not saved, so a reload brings back an idle work phase at its full length. Your duration settings, today's session count, and the streak are restored. The phase that was in progress does not gain credit.",
+  },
+  {
+    question: "How is this different from the Countdown Timer?",
+    answer:
+      "This timer moves between work, short break, and long break on its own, and it keeps today's count and the streak. The Countdown Timer runs one length that you type in, then stops, and it saves nothing.",
+  },
+  {
+    question: "What does the Until long break card count?",
+    answer:
+      "It shows how many work sessions are left before the long break: the cadence minus your current streak. A finished work session lowers it by one, and a long break fills it back up. Skipping a work phase leaves the streak unchanged.",
+  },
+  {
+    question: "Can I run the timer from the keyboard?",
+    answer:
+      "Yes. Start, Pause, Reset, Skip phase, and the phase buttons are native buttons in tab order, so Tab moves between them and Enter or Space presses one. The duration fields accept typed numbers, and there is no global shortcut.",
+  },
 ];
 
 export default function PomodoroTimerContent() {
@@ -38,7 +63,7 @@ export default function PomodoroTimerContent() {
         a desk, and every control is a button you can reach with the keyboard.
       </p>
 
-      <h2>How to use it</h2>
+      <h2>Start a focus block</h2>
       <ol>
         <li>Choose work, short break, or long break. Work is selected when the page opens.</li>
         <li>Press Start. The ring empties as the clock counts down.</li>
@@ -56,7 +81,7 @@ export default function PomodoroTimerContent() {
         </li>
       </ol>
 
-      <h2>What the three phases do</h2>
+      <h2>How the phases follow each other</h2>
       <p>
         A work phase adds one to today's count and one to the streak. Before the cadence is
         reached, the break that follows is a short one. When the streak reaches the cadence, the
@@ -98,7 +123,7 @@ export default function PomodoroTimerContent() {
         the counters are still correct when you return.
       </p>
 
-      <h2>What is stored</h2>
+      <h2>What stays on this device</h2>
       <p>
         Two small records live in this browser. One holds the four duration settings, and the
         other holds the local date, today's session count, and the current streak. Neither

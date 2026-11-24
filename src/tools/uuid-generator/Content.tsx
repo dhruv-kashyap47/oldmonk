@@ -27,6 +27,31 @@ export const faq: readonly FAQItem[] = [
     answer:
       "Hyphens are punctuation in the canonical 8-4-4-4-12 form, not part of the value. Turning them off gives the 32 hex digits used by compact storage, and the underlying bytes are unchanged. Databases and APIs differ on which form they accept, so check the target format.",
   },
+  {
+    question: "Why is 1,000 the maximum batch size?",
+    answer:
+      "The page stops at 1,000 values per run so the list and the download stay responsive. For a larger set, generate another batch and keep the files separate.",
+  },
+  {
+    question: "Does the list survive a page reload?",
+    answer:
+      "No. The list is held in the page and is not saved, so a reload clears it. Copy or download a batch you want to keep.",
+  },
+  {
+    question: "Do I get new values when I press Generate again?",
+    answer:
+      "Yes. Every press makes a fresh batch from the random source, even with the same version, count, and format settings.",
+  },
+  {
+    question: "What does the count error mean?",
+    answer:
+      "The field accepts a whole number from 1 to 1,000. Zero, a negative number, a decimal, or text fails, and the message repeats the allowed range.",
+  },
+  {
+    question: "How is this different from a random number generator?",
+    answer:
+      "A random number generator returns numbers in a range you choose. This tool sets the version and variant bits and returns a 128-bit identifier in a fixed hexadecimal layout.",
+  },
 ];
 
 export default function UuidGeneratorContent() {
@@ -38,7 +63,7 @@ export default function UuidGeneratorContent() {
         large enough for fixtures and seed data.
       </p>
 
-      <h2>How to use it</h2>
+      <h2>Generate a batch in four steps</h2>
       <ol>
         <li>Enter a count from 1 to 1,000.</li>
         <li>
@@ -53,7 +78,7 @@ export default function UuidGeneratorContent() {
         generate new values, so you can keep a batch and adjust its presentation.
       </p>
 
-      <h2>Version 4</h2>
+      <h2>When to use version 4</h2>
       <p>
         A version 4 UUID is almost entirely random. Six bits mark the version and the variant, and
         the other 122 bits come from the random source. That leaves enough combinations that a
@@ -66,7 +91,7 @@ export default function UuidGeneratorContent() {
         reveal when the record was made.
       </p>
 
-      <h2>Version 7</h2>
+      <h2>When to use version 7</h2>
       <p>
         A version 7 UUID starts with a 48-bit Unix timestamp in milliseconds, followed by a version
         marker, random bits, and a variant marker. Because the timestamp sits at the front, values
@@ -94,7 +119,7 @@ export default function UuidGeneratorContent() {
         values in one canonical form so a lowercase and an uppercase copy do not look different.
       </p>
 
-      <h2>Limits and privacy</h2>
+      <h2>Batch size and local generation</h2>
       <p>
         Each run is capped at 1,000 values so the page stays responsive. Generation happens in this
         tab with the browser random source, and the list is not sent anywhere. The values are not

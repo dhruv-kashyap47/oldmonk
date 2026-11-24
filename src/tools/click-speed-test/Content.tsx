@@ -27,6 +27,31 @@ export const faq: readonly FAQItem[] = [
     answer:
       "The number depends on the device, the mouse or touch screen, the browser, and the position of your hand. It is useful for comparing your own attempts on the same setup, not as an official record. The best score is stored only in this browser, and the tool does not collect scores from anyone else.",
   },
+  {
+    question: "Is the best score kept after I reload?",
+    answer:
+      "Yes. The best clicks per second is stored in this browser and shown again next time. The clicks and gaps from the current run are not saved, and a reload during a run ends that run.",
+  },
+  {
+    question: "Do clicks outside the target count?",
+    answer:
+      "No. Only clicks on the target button are counted, and Space works anywhere on the page while the window runs. A click on Start or on the background does not add to the count.",
+  },
+  {
+    question: "Does the click target work with touch?",
+    answer:
+      "Yes. The target is a large button meant for tapping. A touch screen can add its own delay, so compare runs on the same device.",
+  },
+  {
+    question: "How is this different from the Typing Speed Test?",
+    answer:
+      "This test counts clicks in a fixed ten second window and reports clicks per second. The Typing Speed Test measures correct characters against a passage and reports words per minute and accuracy. The two numbers are not comparable with each other.",
+  },
+  {
+    question: "Why is my consistency score zero?",
+    answer:
+      "Consistency compares the gaps between clicks, so it needs at least two gaps to produce a number. A run with fewer than three clicks has too few gaps and reports zero. A zero here means there was nothing to compare, not that the pace was slow.",
+  },
 ];
 
 export default function ClickSpeedTestContent() {
@@ -38,7 +63,7 @@ export default function ClickSpeedTestContent() {
         so a fast but uneven run does not look the same as a steady one.
       </p>
 
-      <h2>How to use it</h2>
+      <h2>Run a ten second click test</h2>
       <ol>
         <li>Press <strong>Start 10 second test</strong>. The target appears and the window begins.</li>
         <li>Click or tap the large target as often as you can, or press Space.</li>
@@ -97,7 +122,7 @@ export default function ClickSpeedTestContent() {
         zero click run reports 0 CPS and does not replace a stored best.
       </p>
 
-      <h2>Privacy</h2>
+      <h2>Your best score in this browser</h2>
       <p>
         Everything happens in this tab. No click data, timing, or score is uploaded. The best CPS
         is kept in local storage so it survives a reload, and clearing site data removes it.

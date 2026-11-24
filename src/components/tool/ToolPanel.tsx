@@ -4,7 +4,7 @@ export function ToolPanel(props: { children: JSX.Element; class?: string; label?
   return (
     <section
       aria-label={props.label}
-      class={`rounded-panel border border-line bg-surface p-4 sm:p-6 ${props.class ?? ""}`}
+      class={`tool-panel panel-in rounded-panel border border-line bg-surface p-4 sm:p-6 ${props.class ?? ""}`}
     >
       {props.children}
     </section>

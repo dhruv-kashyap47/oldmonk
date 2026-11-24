@@ -4,9 +4,9 @@ import type { ToolCategory } from "../tools/types";
  * One catalog category. Categories carry their own intro and SEO copy so the
  * home page, category page, and sitemap read from a single source.
  *
- * There is no `icon` field: the category marker is a 6px dot plus an 8 percent
- * tint chip drawn from `--cat-*`, per design/REFERENCES.md §6. No icon
- * library is installed.
+ * There is no `icon` field and no dot: the category marker is an 8 percent tint
+ * chip with the label in the category color (`--cat-*`), per
+ * design/REFERENCES.md §6. No icon library is installed.
  */
 export interface ToolCategoryInfo {
   /** Category id, shared with `ToolMeta.category` and the `--cat-*` tokens. */

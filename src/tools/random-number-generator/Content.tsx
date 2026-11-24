@@ -27,6 +27,31 @@ export const faq: readonly FAQItem[] = [
     answer:
       "The count runs from 1 to 1,000 values per batch, and the precision runs from 0 to 6 decimal places. The scaled range must fit in one 32-bit crypto draw. A wider range is rejected with a message instead of being silently compressed.",
   },
+  {
+    question: "Does the history survive a reload?",
+    answer:
+      "No. The 20 most recent batches live in page memory only, and a reload starts with an empty history. Copy a batch into another document if you need to keep it.",
+  },
+  {
+    question: "Why does the history shorten a long batch?",
+    answer:
+      "Each history row prints at most 12 values, then an ellipsis, to keep the list readable. The full batch is in the result box until you generate again, so copy it first if you need every value.",
+  },
+  {
+    question: "How is this different from the dice roller?",
+    answer:
+      "The dice roller uses fixed die sizes and adds a single modifier after the roll. This page takes any two bounds, can return decimals, and can draw up to 1,000 values in one batch.",
+  },
+  {
+    question: "Can the range include negative numbers?",
+    answer:
+      "Yes. A range such as -10 to -1 works, and both ends are possible results. The only order rule is that the minimum must be less than or equal to the maximum.",
+  },
+  {
+    question: "Can I copy the list into a spreadsheet?",
+    answer:
+      "The result box holds one value per line, so a paste fills one cell per row. Copy numbers uses the same order you see, with no extra text.",
+  },
 ];
 
 export default function RandomNumberGeneratorContent() {
@@ -37,7 +62,7 @@ export default function RandomNumberGeneratorContent() {
         return one value, a batch of up to 1,000, or a batch where every value is distinct.
       </p>
 
-      <h2>How to use it</h2>
+      <h2>Set a range, a count, and a precision</h2>
       <ol>
         <li>Enter a minimum and a maximum. Both ends of the range are allowed.</li>
         <li>Choose how many numbers you need, from 1 to 1,000.</li>
@@ -89,7 +114,7 @@ export default function RandomNumberGeneratorContent() {
         padded.
       </p>
 
-      <h2>Limits and privacy</h2>
+      <h2>Range limits and what is saved</h2>
       <p>
         The scaled range must fit within one 32-bit draw, which covers roughly 4.29 billion integer
         steps. A very wide range with six decimal places can exceed that, and the tool asks you to

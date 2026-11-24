@@ -39,8 +39,8 @@ export default function SearchDialog(props: {
 
   return (
     <Dialog open={props.open} onOpenChange={props.onOpenChange}>
-      <DialogBackdrop class="fixed inset-0 z-40 bg-black/45" />
-      <DialogContent class="fixed top-[10vh] left-1/2 z-50 w-[min(92vw,40rem)] -translate-x-1/2 rounded-panel border border-line bg-surface p-4 shadow-2xl">
+      <DialogBackdrop class="dialog-backdrop fixed inset-0 z-40 bg-black/45" />
+      <DialogContent class="search-panel fixed top-[10vh] left-1/2 z-50 w-[min(92vw,40rem)] -translate-x-1/2 rounded-panel border border-line bg-surface p-4 shadow-2xl">
         <div class="flex items-start justify-between gap-4 px-1 pb-3">
           <div>
             <DialogTitle class="font-serif text-xl font-semibold text-ink">Search tools</DialogTitle>
@@ -59,6 +59,7 @@ export default function SearchDialog(props: {
           <CommandInput
             aria-label="Search tools"
             placeholder="Type a tool name, like JSON"
+            autofocus
             class="mb-3 w-full rounded-control border border-line bg-surface-2 px-3 py-2.5 text-[15px] text-ink placeholder:text-muted/70 focus:outline-none"
           />
           <CommandEmpty class="px-2 py-6 text-sm text-muted">

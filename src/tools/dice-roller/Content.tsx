@@ -27,6 +27,31 @@ export const faq: readonly FAQItem[] = [
     answer:
       "Only in the page's memory. The history keeps the 20 most recent rolls for the session. Nothing is written to local storage, sent to a server, or attached to analytics, and a reload clears it.",
   },
+  {
+    question: "Can I roll two different dice in one go?",
+    answer:
+      "No. A roll has one die size and one count, so 1d20+2d6 is not valid notation. Roll each group separately and add the totals, or keep them as separate history entries.",
+  },
+  {
+    question: "How do I roll with advantage?",
+    answer:
+      "There is no keep-highest form. Roll 1d20 twice and keep the higher total, or roll 2d20 and subtract the lower die by hand. The history records both rolls so you can compare.",
+  },
+  {
+    question: "What does Check the roll mean?",
+    answer:
+      "It is the heading for a rejected input. The message under it names the part to fix, such as a count outside 1 to 100 or a modifier outside -100 to 100. Adjust that field and roll again.",
+  },
+  {
+    question: "Does the history keep every die face?",
+    answer:
+      "No. Each history row stores the notation and the total only. Copy result keeps the individual faces for the current roll, so copy it before you roll again if you need them.",
+  },
+  {
+    question: "How is this different from the random number generator?",
+    answer:
+      "The number generator draws from any range you set, including decimals. This page uses the seven standard die sizes and adds a flat modifier once after the dice are summed.",
+  },
 ];
 
 export default function DiceRollerContent() {
@@ -37,7 +62,7 @@ export default function DiceRollerContent() {
         modifier. You can click the controls or type tabletop notation such as 2d6+1.
       </p>
 
-      <h2>How to use it</h2>
+      <h2>Pick a die, then roll</h2>
       <ol>
         <li>Choose a die size. The selected die is highlighted and reads as pressed to a screen reader.</li>
         <li>Set how many dice to roll, from 1 to 100.</li>
@@ -51,7 +76,7 @@ export default function DiceRollerContent() {
         </li>
       </ol>
 
-      <h2>The notation</h2>
+      <h2>Reading dice notation</h2>
       <p>
         The parser accepts an optional count, the letter d in either case, the number of sides, and
         an optional plus or minus modifier. That covers <code>2d6+1</code>, <code>1d20</code>,{" "}
@@ -87,7 +112,7 @@ export default function DiceRollerContent() {
         useful for a session log or a message to the rest of the table.
       </p>
 
-      <h2>Privacy</h2>
+      <h2>What leaves this tab</h2>
       <p>
         The roller runs entirely in this tab. The notation, the history, and the results are not
         uploaded or stored. When analytics is enabled at build time, the tool sends anonymous

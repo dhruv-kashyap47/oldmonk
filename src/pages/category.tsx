@@ -3,6 +3,8 @@ import { useLocation } from "@solidjs/router";
 import { categories } from "../content/categories";
 import { topics } from "../content/topics";
 import { getToolsByCategory } from "../tools/registry";
+import { formatCount } from "../lib/format";
+import { categoryColor, categoryInk } from "../lib/category-style";
 import { breadcrumbSchema } from "../seo/schema";
 import { MetaTags } from "../components/seo/MetaTags";
 import { JsonLd } from "../components/seo/JsonLd";
@@ -37,14 +39,19 @@ export default function CategoryPage() {
             <main id="main" class="pb-16">
               <Container class="pt-8">
                 <Breadcrumbs items={crumbs()} />
-                <h1 class="mt-6 max-w-[18ch] font-serif text-[clamp(2.5rem,5vw,3.75rem)] leading-[1.02] font-semibold tracking-tight text-ink">
+                <div
+                  class="hero-rule mt-6 h-[3px] w-14"
+                  style={`background-color:${categoryColor(current.slug)}`}
+                  aria-hidden="true"
+                />
+                <h1 class="mt-5 max-w-[18ch] font-serif text-[clamp(2.5rem,5vw,3.75rem)] leading-[1.02] font-semibold tracking-tight text-ink">
                   {current.name}
                 </h1>
                 <p class="mt-4 max-w-[60ch] text-lg leading-relaxed text-muted">
                   {current.intro}
                 </p>
-                <p class={`${monoMeta} mt-3`}>
-                  {rows().length} {rows().length === 1 ? "tool" : "tools"} in this category
+                <p class={`${monoMeta} mt-3`} style={`color:${categoryInk(current.slug)}`}>
+                  {formatCount(rows().length, "tool")} in this category
                 </p>
               </Container>
 
@@ -59,7 +66,9 @@ export default function CategoryPage() {
                   }
                 >
                   <ul>
-                    <For each={rows()}>{(tool) => <CatalogRow tool={tool} />}</For>
+                    <For each={rows()}>
+                      {(tool, index) => <CatalogRow tool={tool} index={index()} />}
+                    </For>
                   </ul>
                 </Show>
               </Container>
@@ -69,13 +78,14 @@ export default function CategoryPage() {
               <Show when={topics.filter((topic) => topic.category === current.slug).length > 0}>
                 <Container class="mt-16">
                   <h2 class="font-serif text-2xl font-semibold text-ink">Topic guides</h2>
-                  <ul class="mt-5 grid gap-3 sm:grid-cols-2">
+                  <ul class="mt-4">
                     <For each={topics.filter((topic) => topic.category === current.slug)}>
                       {(topic) => (
-                        <li>
+                        <li class="border-t border-line">
                           <a
                             href={topic.path}
-                            class={`${focusRing} flex min-h-11 items-center rounded-control border border-line px-3 text-sm text-ink hover:border-accent`}
+                            class={`${focusRing} catalog-row group -mx-3 flex min-h-11 items-center rounded-control px-3 py-3 text-sm text-ink`}
+                            style={`--cat-color:${categoryColor(current.slug)}`}
                           >
                             {topic.name}
                           </a>
@@ -88,13 +98,13 @@ export default function CategoryPage() {
 
               <Container class="mt-16">
                 <h2 class="font-serif text-2xl font-semibold text-ink">Other categories</h2>
-                <ul class="mt-5 flex flex-wrap gap-x-6 gap-y-3">
+                <ul class="mt-4 flex flex-wrap gap-x-6 gap-y-3">
                   <For each={siblings()}>
                     {(sibling) => (
-                      <li>
+                      <li style={`--cat-color:${categoryColor(sibling.slug)};--cat-ink:${categoryInk(sibling.slug)}`}>
                         <a
                           href={sibling.path}
-                          class={`${focusRing} rounded-control text-sm text-accent underline-offset-4 hover:underline`}
+                          class={`${focusRing} rounded-control text-sm text-accent underline decoration-accent/30 underline-offset-4 hover:text-[var(--cat-ink)] hover:decoration-current`}
                         >
                           {sibling.name}
                         </a>

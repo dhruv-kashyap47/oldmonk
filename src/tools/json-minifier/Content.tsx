@@ -27,6 +27,31 @@ export const faq: readonly FAQItem[] = [
     answer:
       "No. The text is parsed and printed in this browser tab. Nothing is sent to a server, and the input is not stored after a reload.",
   },
+  {
+    question: "Why did the spaces inside a string survive?",
+    answer:
+      "Spaces, tabs, and line breaks inside a quoted string are data, so they stay. The minifier removes only the whitespace between tokens.",
+  },
+  {
+    question: "How do I get the readable version back?",
+    answer:
+      "Paste the minified output into the JSON formatter tool and choose an indent. Minifying keeps every value, so only the layout needs to be restored.",
+  },
+  {
+    question: "Does the size report count characters or bytes?",
+    answer:
+      "It counts UTF-8 bytes, not characters. Accented letters, emoji, and other characters outside the basic Latin range take more than one byte.",
+  },
+  {
+    question: "Does the output end with a newline?",
+    answer:
+      "No. The result is a single line with no trailing line break. A newline inside a string value is escaped in the output and stays part of the data.",
+  },
+  {
+    question: "Can I minify several documents in one run?",
+    answer:
+      "No. Each run handles one JSON value, and the 5 MB cap applies to that document. Run the tool again for the next file.",
+  },
 ];
 
 export default function JsonMinifierContent() {
@@ -37,7 +62,7 @@ export default function JsonMinifierContent() {
         result is one line of JSON with the same parsed value and a smaller byte count.
       </p>
 
-      <h2>How to use it</h2>
+      <h2>Shrink JSON in four steps</h2>
       <ol>
         <li>Paste a JSON document into the input field.</li>
         <li>
@@ -53,7 +78,7 @@ export default function JsonMinifierContent() {
         </li>
       </ol>
 
-      <h2>What is removed</h2>
+      <h2>What minifying removes</h2>
       <p>
         Whitespace between tokens has no meaning in JSON, so the minifier drops it. Spaces
         and tabs inside a string are data and stay exactly as written. Escape sequences also
@@ -67,7 +92,7 @@ export default function JsonMinifierContent() {
         parsed object can hold only one value per name.
       </p>
 
-      <h2>The size report</h2>
+      <h2>Reading the size report</h2>
       <p>
         Sizes are UTF-8 byte counts, not character counts, so a document with accented letters
         or emoji reports more bytes than its visible length. The percentage is the removed
@@ -76,7 +101,7 @@ export default function JsonMinifierContent() {
         shows a negative saving rather than hiding it.
       </p>
 
-      <h2>Minify and gzip are different steps</h2>
+      <h2>How minifying differs from gzip</h2>
       <p>
         Minification removes characters from the document itself. gzip and Brotli compress the
         byte stream for transport, and the browser or server reverses that step. They work at
@@ -85,7 +110,7 @@ export default function JsonMinifierContent() {
         the first step only.
       </p>
 
-      <h2>When to minify</h2>
+      <h2>When a minified file helps</h2>
       <p>
         Minified JSON is useful for fixtures, embedded payloads, and API examples where every
         byte is part of the artifact. Keep a readable source version for review. A minified
@@ -93,7 +118,7 @@ export default function JsonMinifierContent() {
         to spot by eye.
       </p>
 
-      <h2>Limits and privacy</h2>
+      <h2>The 5 MB cap and local work</h2>
       <p>
         Input is capped at 5 MB of UTF-8 text. Parsing and printing happen in this tab on the
         main thread, so a very large document can briefly make the page busy. Nothing is

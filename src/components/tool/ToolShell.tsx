@@ -2,6 +2,7 @@ import type { JSX } from "@solidjs/web";
 import { Show, onSettled } from "solid-js";
 import { track } from "../../analytics";
 import { getCategory } from "../../content/categories";
+import { categoryColor } from "../../lib/category-style";
 import { breadcrumbSchema, webApplicationSchema } from "../../seo/schema";
 import type { ToolMeta } from "../../tools/types";
 import { JsonLd } from "../seo/JsonLd";
@@ -40,7 +41,11 @@ export function ToolShell(props: {
       <JsonLd data={webApplicationSchema(props.tool)} />
       <JsonLd data={breadcrumbSchema(crumbs())} />
 
-      <main id="main" class="pb-20">
+      <main
+        id="main"
+        class="tool-page pb-20"
+        style={`--tool-accent:${categoryColor(props.tool.category)}`}
+      >
         <Container width={width()} class="pt-8">
           <Breadcrumbs items={crumbs()} />
           <ToolHeader tool={props.tool} />

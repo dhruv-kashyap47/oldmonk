@@ -27,6 +27,31 @@ export const faq: readonly FAQItem[] = [
     answer:
       "A Unix timestamp is a count of seconds or milliseconds since the epoch, and it carries no zone because it is a single instant. ISO 8601 is a written date and time, optionally with an offset or a Z suffix for UTC. The converter reads both and shows the result in both forms.",
   },
+  {
+    question: "What changes when I pick seconds or milliseconds myself?",
+    answer:
+      "Automatic detection uses the digit count to choose a unit. A manual choice tells the converter how to read the number, which is the way to convert an 11 or 12 digit value that auto refuses.",
+  },
+  {
+    question: "Why is the ISO output in UTC when I picked another zone?",
+    answer:
+      "The ISO field always ends in Z, which means UTC, so the string reads the same on every device. Changing the display zone updates the zone card, not the ISO row.",
+  },
+  {
+    question: "What does Outside the date range mean?",
+    answer:
+      "The number is beyond the largest date JavaScript can represent, about 8.64e15 milliseconds either side of the epoch. Nothing is rounded, so try a smaller value or check the unit.",
+  },
+  {
+    question: "Is the last timestamp still there after a reload?",
+    answer:
+      "No. The field and the result are cleared when the page loads again. The Use now button reads the clock fresh each time it is pressed.",
+  },
+  {
+    question: "How precise is the relative phrase?",
+    answer:
+      "It rounds to one unit, from seconds up to years, and it is calculated once when you press Convert. It does not count up while the page stays open.",
+  },
 ];
 
 export default function TimestampConverterContent() {
@@ -38,7 +63,7 @@ export default function TimestampConverterContent() {
         timestamp, and shows the same moment in the zone you pick.
       </p>
 
-      <h2>How to use it</h2>
+      <h2>Convert a value in four steps</h2>
       <ol>
         <li>Paste a Unix timestamp or an ISO 8601 date in the input field.</li>
         <li>
@@ -92,7 +117,7 @@ export default function TimestampConverterContent() {
         output, and it does not need another conversion.
       </p>
 
-      <h2>Limits and privacy</h2>
+      <h2>Date range and local conversion</h2>
       <p>
         JavaScript dates cover roughly 273,000 years on either side of the epoch. A number outside
         that range cannot be represented and is reported instead of being silently rounded.

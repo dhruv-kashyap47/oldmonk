@@ -27,6 +27,31 @@ export const faq: readonly FAQItem[] = [
     answer:
       "No. It checks the JSON grammar only. Field names, required properties, and value ranges are schema rules, and they are outside the scope of this page.",
   },
+  {
+    question: "What do the byte count and line count measure?",
+    answer:
+      "The byte count is the UTF-8 size of the document after a leading byte order mark is removed. The line count comes from splitting that text on newlines, so a trailing newline adds an empty final line.",
+  },
+  {
+    question: "The error points at a line that looks correct. Why?",
+    answer:
+      "The parser reports where it could not continue, which is often just after an earlier mistake. A missing comma, an unclosed quote, or a trailing comma on the previous line can surface at the next token.",
+  },
+  {
+    question: "Can I check a JSON Lines file here?",
+    answer:
+      "No. The validator expects one JSON value, so a file with several documents on separate lines fails with unexpected text after the first value. Check each line on its own.",
+  },
+  {
+    question: "What is the difference from the JSON formatter?",
+    answer:
+      "The validator returns a verdict, byte and line counts, and the first error, and it never rewrites the document. The formatter prints the document again with indentation and optional sorted keys.",
+  },
+  {
+    question: "Can it fetch JSON from a URL?",
+    answer:
+      "No. The page makes no network request, so paste the response body into the field. A URL in the input is treated as text and fails the grammar check.",
+  },
 ];
 
 export default function JsonValidatorContent() {
@@ -38,7 +63,7 @@ export default function JsonValidatorContent() {
         line where parsing stopped.
       </p>
 
-      <h2>How to use it</h2>
+      <h2>Check a document in four steps</h2>
       <ol>
         <li>Paste a JSON document into the input field.</li>
         <li>
@@ -54,7 +79,7 @@ export default function JsonValidatorContent() {
         </li>
       </ol>
 
-      <h2>The grammar in brief</h2>
+      <h2>The JSON grammar in brief</h2>
       <p>
         A JSON document contains one value. A value is an object, an array, a string, a
         number, <code>true</code>, <code>false</code>, or <code>null</code>. An object holds
@@ -69,7 +94,7 @@ export default function JsonValidatorContent() {
         the special values for not-a-number and infinity are not JSON.
       </p>
 
-      <h2>Common mistakes</h2>
+      <h2>Trailing commas and other common mistakes</h2>
       <p>
         A trailing comma is the most frequent error, as in <code>[1, 2,]</code> or{" "}
         <code>{'{"a": 1,}'}</code>. The next most common is a comment copied from a config
@@ -83,7 +108,7 @@ export default function JsonValidatorContent() {
         order mark is stripped before parsing here, because some Windows tools add one.
       </p>
 
-      <h2>Duplicate names</h2>
+      <h2>When an object repeats a name</h2>
       <p>
         A JSON object is a map, so a repeated name cannot hold two values. The grammar still
         permits the text, and different parsers have handled it differently over the years.
@@ -92,7 +117,7 @@ export default function JsonValidatorContent() {
         the repetition was accidental.
       </p>
 
-      <h2>What it does not do</h2>
+      <h2>What it does not check</h2>
       <p>
         The validator reports the first failure only, because later text depends on how the
         earlier part is read. It does not repair the document, format it, or compare it with
@@ -100,7 +125,7 @@ export default function JsonValidatorContent() {
         of validation.
       </p>
 
-      <h2>Limits and privacy</h2>
+      <h2>The 5 MB cap, checked locally</h2>
       <p>
         Input is capped at 5 MB of UTF-8 text. Parsing runs on the main thread, so a document
         near the cap can make the page busy for a moment. The document stays in the tab, and
