@@ -45,7 +45,7 @@ The gate:
 - [ ] **Spec grid.** Two columns, 48px column gap, 40px row gap, label 13px muted, value 15px ink. It ships with the first tool page.
 - [ ] **Rules and focus.** Dashed hairlines in filter groups only. Focus is a 2px surface ring inside a 4px focus ring.
 - [ ] **Both themes.** Check light and dark before calling the work done.
-- [ ] **Motion.** 120 to 180ms ease-out, one orchestrated moment on the home page, reduced motion respected, no looping decoration.
+- [ ] **Motion.** 140ms for UI transitions, a 240ms page settle, and a 45ms catalog row stagger. One orchestrated moment on the home page, reduced motion respected, no looping decoration.
 - [ ] **Copy.** No em dashes (see below). Sentence case. No all-caps eyebrows. No "it's not X, it's Y" or "no X, no Y, no Z".
 - [ ] **Logo.** `assets/logo/main-logo.png` and `main-favicon.png` are the only brand artwork, derived by `npm run brand:assets` into `public/brand/`. The header and footer use `mark-128.png` plus the site name in Bitter (`size-9` and `size-8`). The full lockup is for dark surfaces only: its `old` letters are white on a transparent field and vanish on paper. Never redraw the mark, never generate a second logo, never recolor it.
 
