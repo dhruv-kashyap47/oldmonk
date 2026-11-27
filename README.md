@@ -1,4 +1,4 @@
-# oldmonk
+# oldmonk.
 
 A browser-first tools platform: fast, private utilities for code, text, random picks, timers, and small tests. Every tool runs locally. There is no signup, no upload, and no tool backend.
 
